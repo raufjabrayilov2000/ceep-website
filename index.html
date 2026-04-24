@@ -431,6 +431,42 @@
     .tl-download-btn { display: inline-flex; align-items: center; gap: .35rem; background: rgba(122,30,58,.07); border: 1px solid rgba(122,30,58,.28); color: var(--burgundy); font-family: var(--font-body); font-size: .71rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .32rem .85rem; border-radius: 3px; text-decoration: none; transition: background .2s, color .2s, transform .2s; margin-top: .7rem; cursor: none; }
     .tl-download-btn:hover { background: var(--burgundy); color: white; transform: translateY(-1px); }
 
+    /* ─── Compact Programs Grid ─────────────────────────────────────── */
+    .past-section-header { margin-bottom: 2rem !important; }
+    .programs-compact-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: .65rem; }
+    @media(max-width:640px){ .programs-compact-grid { grid-template-columns: 1fr; } }
+
+    .pc-card { background: var(--parchment); border: 1px solid var(--stone); border-left: 3px solid transparent; border-radius: 6px; padding: .85rem 1.1rem; position: relative; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+    .pc-card:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(28,18,8,.1); }
+
+    .pc-march   { border-left-color: var(--eu-blue); }
+    .pc-summer  { border-left-color: var(--terracotta); }
+    .pc-newyear { border-left-color: var(--bronze); }
+    .pc-autumn  { border-left-color: var(--burgundy); }
+
+    .pc-march:hover   { border-color: rgba(0,51,153,.28);   border-left-color: var(--eu-blue); }
+    .pc-summer:hover  { border-color: rgba(192,82,40,.28);  border-left-color: var(--terracotta); }
+    .pc-newyear:hover { border-color: rgba(181,118,46,.28); border-left-color: var(--bronze); }
+    .pc-autumn:hover  { border-color: rgba(122,30,58,.28);  border-left-color: var(--burgundy); }
+
+    .pc-meta { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .38rem; }
+    .pc-date { font-family: var(--font-serif); font-style: italic; font-size: .8rem; color: var(--muted); white-space: nowrap; }
+    .pc-badge { font-size: .56rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; border-radius: 100px; padding: .14rem .55rem; white-space: nowrap; }
+    .pc-march .pc-badge   { color: var(--eu-blue);   background: rgba(0,51,153,.06);   border: 1px solid rgba(0,51,153,.14); }
+    .pc-summer .pc-badge  { color: var(--terracotta); background: rgba(192,82,40,.06);  border: 1px solid rgba(192,82,40,.14); }
+    .pc-newyear .pc-badge { color: var(--bronze);    background: rgba(181,118,46,.06);  border: 1px solid rgba(181,118,46,.18); }
+    .pc-autumn .pc-badge  { color: var(--burgundy);  background: rgba(122,30,58,.06);   border: 1px solid rgba(122,30,58,.14); }
+
+    .pc-title { font-family: var(--font-display); font-size: 1.0rem; text-transform: uppercase; letter-spacing: .04em; color: var(--ink); line-height: 1; margin-bottom: .4rem; }
+    .pc-cities { display: flex; flex-wrap: wrap; gap: .2rem; }
+    .pc-city { display: inline-flex; align-items: center; gap: .2rem; background: rgba(28,18,8,.04); border: 1px solid rgba(200,184,152,.7); border-radius: 100px; padding: .13rem .48rem; font-size: .67rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
+    .pc-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .35rem; margin-top: .45rem; padding-top: .38rem; border-top: 1px solid rgba(200,184,152,.5); }
+    .pc-partner { font-size: .62rem; color: var(--muted); display: flex; align-items: center; gap: .28rem; line-height: 1.4; }
+    .pc-partner strong { color: var(--ink); font-weight: 600; }
+    .pc-done-dot { width: 5px; height: 5px; border-radius: 50%; background: #22C55E; flex-shrink: 0; margin-top: 1px; }
+    .pc-download-btn { display: inline-flex; align-items: center; gap: .3rem; background: rgba(122,30,58,.07); border: 1px solid rgba(122,30,58,.28); color: var(--burgundy); font-family: var(--font-body); font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .7rem; border-radius: 3px; text-decoration: none; transition: background .18s, color .18s; cursor: none; white-space: nowrap; }
+    .pc-download-btn:hover { background: var(--burgundy); color: white; }
+
     /* Utilities */
     .container { max-width: 1200px; margin: 0 auto; }
     .mt-2 { margin-top: 2rem; }
@@ -675,186 +711,162 @@
         <p class="past-desc reveal reveal-delay-2">From Budapest to Barcelona — CEEP has brought hundreds of students across 14+ European cities since 2019. Every edition a new chapter, every cohort a new story.</p>
       </div>
 
-      <div class="timeline">
+      <div class="programs-compact-grid">
 
-        <div class="tl-year-divider reveal"><span>2022</span></div>
-
-        <div class="tl-item tl-march tl-left reveal reveal-delay-1">
-          <div class="tl-node"></div>
-          <div class="tl-card">
-            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=400&q=70" alt="Budapest" loading="lazy" /></div>
-            <div class="tl-card-inner">
-              <div class="tl-season-tag">🌸 March 2022</div>
-              <div class="tl-title">Spring Program</div>
-              <div class="tl-cities">
-                <span class="tl-city">🇭🇺 Budapest</span>
-                <span class="tl-city">🇦🇹 Vienna</span>
-                <span class="tl-city">🇫🇷 Paris</span>
-              </div>
-              <div class="tl-partner-note"><span class="tl-done-dot"></span>Organized by <strong>Budapest University of Technology and Economics</strong></div>
-            </div>
+        <!-- 1 · March 2022 -->
+        <div class="pc-card pc-march reveal reveal-delay-1">
+          <div class="pc-meta">
+            <span class="pc-date">🌸 March 2022</span>
+            <span class="pc-badge">Spring</span>
+          </div>
+          <div class="pc-title">Spring Program</div>
+          <div class="pc-cities">
+            <span class="pc-city">🇭🇺 Budapest</span>
+            <span class="pc-city">🇦🇹 Vienna</span>
+            <span class="pc-city">🇫🇷 Paris</span>
+          </div>
+          <div class="pc-footer">
+            <div class="pc-partner"><span class="pc-done-dot"></span>Organized by <strong>Budapest University of Technology and Economics</strong></div>
           </div>
         </div>
 
-        <div class="tl-item tl-summer tl-right reveal reveal-delay-2">
-          <div class="tl-node"></div>
-          <div class="tl-card">
-            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=400&q=70" alt="Prague" loading="lazy" /></div>
-            <div class="tl-card-inner">
-              <div class="tl-season-tag">☀️ Summer 2022</div>
-              <div class="tl-title">Summer School</div>
-              <div class="tl-cities">
-                <span class="tl-city">🇨🇿 Prague</span>
-                <span class="tl-city">🇩🇪 Berlin</span>
-                <span class="tl-city">🇦🇹 Vienna</span>
-              </div>
-            </div>
+        <!-- 2 · Summer 2022 -->
+        <div class="pc-card pc-summer reveal reveal-delay-2">
+          <div class="pc-meta">
+            <span class="pc-date">☀️ Summer 2022</span>
+            <span class="pc-badge">Summer School</span>
+          </div>
+          <div class="pc-title">Summer School</div>
+          <div class="pc-cities">
+            <span class="pc-city">🇨🇿 Prague</span>
+            <span class="pc-city">🇩🇪 Berlin</span>
+            <span class="pc-city">🇦🇹 Vienna</span>
           </div>
         </div>
 
-        <div class="tl-year-divider reveal"><span>2023</span></div>
-
-        <div class="tl-item tl-march tl-left reveal reveal-delay-1">
-          <div class="tl-node"></div>
-          <div class="tl-card">
-            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=400&q=70" alt="Budapest" loading="lazy" /></div>
-            <div class="tl-card-inner">
-              <div class="tl-season-tag">🌸 March 2023</div>
-              <div class="tl-title">Spring Program</div>
-              <div class="tl-cities">
-                <span class="tl-city">🇭🇺 Budapest</span>
-                <span class="tl-city">🇦🇹 Vienna</span>
-                <span class="tl-city">🇨🇿 Prague</span>
-              </div>
-            </div>
+        <!-- 3 · March 2023 -->
+        <div class="pc-card pc-march reveal reveal-delay-1">
+          <div class="pc-meta">
+            <span class="pc-date">🌸 March 2023</span>
+            <span class="pc-badge">Spring</span>
+          </div>
+          <div class="pc-title">Spring Program</div>
+          <div class="pc-cities">
+            <span class="pc-city">🇭🇺 Budapest</span>
+            <span class="pc-city">🇦🇹 Vienna</span>
+            <span class="pc-city">🇨🇿 Prague</span>
           </div>
         </div>
 
-        <div class="tl-item tl-summer tl-right reveal reveal-delay-2">
-          <div class="tl-node"></div>
-          <div class="tl-card">
-            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=400&q=70" alt="Venice" loading="lazy" /></div>
-            <div class="tl-card-inner">
-              <div class="tl-season-tag">☀️ Summer 2023</div>
-              <div class="tl-title">Summer School</div>
-              <div class="tl-cities">
-                <span class="tl-city">🇨🇿 Prague</span>
-                <span class="tl-city">🇮🇹 Venezia</span>
-                <span class="tl-city">🇦🇹 Vienna</span>
-                <span class="tl-city">🇭🇺 Budapest</span>
-              </div>
-            </div>
+        <!-- 4 · Summer 2023 -->
+        <div class="pc-card pc-summer reveal reveal-delay-2">
+          <div class="pc-meta">
+            <span class="pc-date">☀️ Summer 2023</span>
+            <span class="pc-badge">Summer School</span>
+          </div>
+          <div class="pc-title">Summer School</div>
+          <div class="pc-cities">
+            <span class="pc-city">🇨🇿 Prague</span>
+            <span class="pc-city">🇮🇹 Venezia</span>
+            <span class="pc-city">🇦🇹 Vienna</span>
+            <span class="pc-city">🇭🇺 Budapest</span>
           </div>
         </div>
 
-        <div class="tl-item tl-newyear tl-left reveal reveal-delay-3">
-          <div class="tl-node"></div>
-          <div class="tl-card">
-            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=70" alt="Paris" loading="lazy" /></div>
-            <div class="tl-card-inner">
-              <div class="tl-season-tag">🎆 New Year 2023</div>
-              <div class="tl-title">New Year Edition</div>
-              <div class="tl-cities">
-                <span class="tl-city">🇨🇿 Prague</span>
-                <span class="tl-city">🇩🇪 Frankfurt</span>
-                <span class="tl-city">🇧🇪 Brussels</span>
-                <span class="tl-city">🇫🇷 Paris</span>
-              </div>
-            </div>
+        <!-- 5 · New Year 2023 -->
+        <div class="pc-card pc-newyear reveal reveal-delay-3">
+          <div class="pc-meta">
+            <span class="pc-date">🎆 New Year 2023</span>
+            <span class="pc-badge">Special Edition</span>
+          </div>
+          <div class="pc-title">New Year Edition</div>
+          <div class="pc-cities">
+            <span class="pc-city">🇨🇿 Prague</span>
+            <span class="pc-city">🇩🇪 Frankfurt</span>
+            <span class="pc-city">🇧🇪 Brussels</span>
+            <span class="pc-city">🇫🇷 Paris</span>
           </div>
         </div>
 
-        <div class="tl-year-divider reveal"><span>2024</span></div>
-
-        <div class="tl-item tl-summer tl-right reveal reveal-delay-1">
-          <div class="tl-node"></div>
-          <div class="tl-card">
-            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=400&q=70" alt="Amsterdam" loading="lazy" /></div>
-            <div class="tl-card-inner">
-              <div class="tl-season-tag">☀️ Summer 2024</div>
-              <div class="tl-title">Summer School</div>
-              <div class="tl-cities">
-                <span class="tl-city">🇨🇿 Prague</span>
-                <span class="tl-city">🇦🇹 Vienna</span>
-                <span class="tl-city">🇩🇪 Frankfurt</span>
-                <span class="tl-city">🇳🇱 Amsterdam</span>
-              </div>
-            </div>
+        <!-- 6 · Summer 2024 -->
+        <div class="pc-card pc-summer reveal reveal-delay-1">
+          <div class="pc-meta">
+            <span class="pc-date">☀️ Summer 2024</span>
+            <span class="pc-badge">Summer School</span>
+          </div>
+          <div class="pc-title">Summer School</div>
+          <div class="pc-cities">
+            <span class="pc-city">🇨🇿 Prague</span>
+            <span class="pc-city">🇦🇹 Vienna</span>
+            <span class="pc-city">🇩🇪 Frankfurt</span>
+            <span class="pc-city">🇳🇱 Amsterdam</span>
           </div>
         </div>
 
-        <div class="tl-year-divider reveal"><span>2025</span></div>
-
-        <div class="tl-item tl-march tl-left reveal reveal-delay-1">
-          <div class="tl-node"></div>
-          <div class="tl-card">
-            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=400&q=70" alt="Brussels" loading="lazy" /></div>
-            <div class="tl-card-inner">
-              <div class="tl-season-tag">🌸 March 2025</div>
-              <div class="tl-title">Spring Program</div>
-              <div class="tl-cities">
-                <span class="tl-city">🇧🇪 Brussels</span>
-                <span class="tl-city">🇳🇱 Amsterdam</span>
-                <span class="tl-city">🇫🇷 Paris</span>
-                <span class="tl-city">🇩🇪 Munich</span>
-                <span class="tl-city">🇨🇿 Prague</span>
-              </div>
-              <div class="tl-partner-note"><span class="tl-done-dot"></span><strong>BME</strong> &amp; <strong>Prague Business School</strong> collaboration</div>
-            </div>
+        <!-- 7 · March 2025 -->
+        <div class="pc-card pc-march reveal reveal-delay-1">
+          <div class="pc-meta">
+            <span class="pc-date">🌸 March 2025</span>
+            <span class="pc-badge">Spring</span>
+          </div>
+          <div class="pc-title">Spring Program</div>
+          <div class="pc-cities">
+            <span class="pc-city">🇧🇪 Brussels</span>
+            <span class="pc-city">🇳🇱 Amsterdam</span>
+            <span class="pc-city">🇫🇷 Paris</span>
+            <span class="pc-city">🇩🇪 Munich</span>
+            <span class="pc-city">🇨🇿 Prague</span>
+          </div>
+          <div class="pc-footer">
+            <div class="pc-partner"><span class="pc-done-dot"></span><strong>BME</strong> &amp; <strong>Prague Business School</strong> collaboration</div>
           </div>
         </div>
 
-        <div class="tl-item tl-summer tl-right reveal reveal-delay-2">
-          <div class="tl-node"></div>
-          <div class="tl-card">
-            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=400&q=70" alt="Venice" loading="lazy" /></div>
-            <div class="tl-card-inner">
-              <div class="tl-season-tag">☀️ Summer 2025</div>
-              <div class="tl-title">Summer School</div>
-              <div class="tl-cities">
-                <span class="tl-city">🇮🇹 Venezia</span>
-                <span class="tl-city">🇮🇹 Milano</span>
-                <span class="tl-city">🇨🇭 Zurich</span>
-                <span class="tl-city">🇨🇭 Geneva</span>
-              </div>
-            </div>
+        <!-- 8 · Summer 2025 -->
+        <div class="pc-card pc-summer reveal reveal-delay-2">
+          <div class="pc-meta">
+            <span class="pc-date">☀️ Summer 2025</span>
+            <span class="pc-badge">Summer School</span>
+          </div>
+          <div class="pc-title">Summer School</div>
+          <div class="pc-cities">
+            <span class="pc-city">🇮🇹 Venezia</span>
+            <span class="pc-city">🇮🇹 Milano</span>
+            <span class="pc-city">🇨🇭 Zurich</span>
+            <span class="pc-city">🇨🇭 Geneva</span>
           </div>
         </div>
 
-        <div class="tl-item tl-autumn tl-left reveal reveal-delay-3">
-          <div class="tl-node"></div>
-          <div class="tl-card">
-            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=400&q=70" alt="Budapest" loading="lazy" /></div>
-            <div class="tl-card-inner">
-              <div class="tl-season-tag">🍂 November 2025</div>
-              <div class="tl-title">Autumn Program</div>
-              <div class="tl-cities">
-                <span class="tl-city">🇭🇺 Budapest</span>
-                <span class="tl-city">🇮🇹 Venezia</span>
-                <span class="tl-city">🇮🇹 Milano</span>
-                <span class="tl-city">🇮🇹 Roma</span>
-              </div>
-              <a href="docs/agenda-november-2025.pdf" target="_blank" rel="noopener" class="tl-download-btn">↓ Download Agenda</a>
-            </div>
+        <!-- 9 · November 2025 -->
+        <div class="pc-card pc-autumn reveal reveal-delay-3">
+          <div class="pc-meta">
+            <span class="pc-date">🍂 November 2025</span>
+            <span class="pc-badge">Autumn</span>
+          </div>
+          <div class="pc-title">Autumn Program</div>
+          <div class="pc-cities">
+            <span class="pc-city">🇭🇺 Budapest</span>
+            <span class="pc-city">🇮🇹 Venezia</span>
+            <span class="pc-city">🇮🇹 Milano</span>
+            <span class="pc-city">🇮🇹 Roma</span>
+          </div>
+          <div class="pc-footer">
+            <a href="docs/agenda-november-2025.pdf" target="_blank" rel="noopener" class="pc-download-btn">↓ Download Agenda</a>
           </div>
         </div>
 
-        <div class="tl-year-divider reveal"><span>2026</span></div>
-
-        <div class="tl-item tl-march tl-right reveal reveal-delay-1">
-          <div class="tl-node"></div>
-          <div class="tl-card">
-            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=400&q=70" alt="Prague" loading="lazy" /></div>
-            <div class="tl-card-inner">
-              <div class="tl-season-tag">🌸 March 2026</div>
-              <div class="tl-title">Spring Program</div>
-              <div class="tl-cities">
-                <span class="tl-city">🇨🇿 Prague</span>
-                <span class="tl-city">🇩🇪 Frankfurt</span>
-                <span class="tl-city">🇳🇱 Amsterdam</span>
-                <span class="tl-city">🇫🇷 Paris</span>
-              </div>
-            </div>
+        <!-- 10 · March 2026 -->
+        <div class="pc-card pc-march reveal reveal-delay-1">
+          <div class="pc-meta">
+            <span class="pc-date">🌸 March 2026</span>
+            <span class="pc-badge">Spring</span>
+          </div>
+          <div class="pc-title">Spring Program</div>
+          <div class="pc-cities">
+            <span class="pc-city">🇨🇿 Prague</span>
+            <span class="pc-city">🇩🇪 Frankfurt</span>
+            <span class="pc-city">🇳🇱 Amsterdam</span>
+            <span class="pc-city">🇫🇷 Paris</span>
           </div>
         </div>
 
