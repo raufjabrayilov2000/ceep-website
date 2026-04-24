@@ -404,6 +404,21 @@
     .container { max-width: 1200px; margin: 0 auto; }
     .mt-2 { margin-top: 2rem; }
 
+    /* Flag Nations Banner */
+    .flag-nations { padding: 2.5rem 2.5rem; background: var(--parchment); border-top: 1px solid var(--stone); border-bottom: 2px solid var(--stone2); position: relative; overflow: hidden; }
+    .flag-nations::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 15% 50%, rgba(192,82,40,.05) 0%, transparent 45%), radial-gradient(ellipse at 85% 50%, rgba(181,118,46,.05) 0%, transparent 45%); pointer-events: none; }
+    .flag-nations-label { text-align: center; font-size: .63rem; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.8rem; display: flex; align-items: center; gap: 1.2rem; justify-content: center; }
+    .flag-nations-label::before, .flag-nations-label::after { content: ''; height: 1px; flex: 1; max-width: 120px; background: linear-gradient(to right, transparent, var(--stone2)); }
+    .flag-nations-label::after { background: linear-gradient(to left, transparent, var(--stone2)); }
+    .flag-nations-row { display: flex; align-items: flex-start; justify-content: center; gap: 2.5rem; flex-wrap: wrap; position: relative; z-index: 1; }
+    .fn-flag { display: flex; flex-direction: column; align-items: center; gap: .55rem; cursor: default; transition: transform .35s cubic-bezier(.23,1,.32,1); }
+    .fn-flag:hover { transform: translateY(-8px) scale(1.07); }
+    .fn-emoji { font-size: 3.4rem; line-height: 1; display: block; filter: drop-shadow(0 6px 14px rgba(28,18,8,.13)) drop-shadow(0 2px 4px rgba(28,18,8,.07)); transition: filter .35s ease; }
+    .fn-flag:hover .fn-emoji { filter: drop-shadow(0 12px 22px rgba(28,18,8,.22)) drop-shadow(0 4px 8px rgba(28,18,8,.12)); }
+    .fn-country { font-family: var(--font-display); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--ink); opacity: .65; }
+    .fn-divider { width: 1px; height: 48px; background: linear-gradient(to bottom, transparent, var(--stone2) 30%, var(--stone2) 70%, transparent); align-self: center; margin-top: -.8rem; flex-shrink: 0; }
+    @media(max-width:640px) { .flag-nations-row { gap: 1.4rem; } .fn-emoji { font-size: 2.4rem; } .fn-divider { display: none; } .flag-nations { padding: 2rem 1.5rem; } }
+
     /* Mobile fixes */
     @media(max-width:768px){
       section { padding: 4rem 1.5rem; }
@@ -528,6 +543,37 @@
       <span class="marquee-item">European Education</span>
       <span class="marquee-item">Webinars &amp; Networking</span>
       <span class="marquee-item">Organizational Management</span>
+    </div>
+  </div>
+
+  <!-- NATIONS FLAGS -->
+  <div class="flag-nations">
+    <div class="flag-nations-label">Program Destinations</div>
+    <div class="flag-nations-row">
+      <div class="fn-flag reveal">
+        <span class="fn-emoji">🇨🇿</span>
+        <span class="fn-country">Czech Republic</span>
+      </div>
+      <div class="fn-divider"></div>
+      <div class="fn-flag reveal reveal-delay-1">
+        <span class="fn-emoji">🇩🇪</span>
+        <span class="fn-country">Germany</span>
+      </div>
+      <div class="fn-divider"></div>
+      <div class="fn-flag reveal reveal-delay-2">
+        <span class="fn-emoji">🇳🇱</span>
+        <span class="fn-country">Netherlands</span>
+      </div>
+      <div class="fn-divider"></div>
+      <div class="fn-flag reveal reveal-delay-3">
+        <span class="fn-emoji">🇫🇷</span>
+        <span class="fn-country">France</span>
+      </div>
+      <div class="fn-divider"></div>
+      <div class="fn-flag reveal reveal-delay-4">
+        <span class="fn-emoji">🇭🇺</span>
+        <span class="fn-country">Hungary</span>
+      </div>
     </div>
   </div>
 
@@ -826,6 +872,7 @@
       </div>
 
       <div class="memories-grid reveal">
+        <!-- 1: Prague Charles Bridge — tall (spans 2 rows) -->
         <div class="memory-item mem-tall">
           <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=600&q=80" alt="Prague Charles Bridge" loading="lazy" />
           <div class="memory-caption">
@@ -833,53 +880,92 @@
             <div class="memory-caption-city">🇨🇿 Prague</div>
           </div>
         </div>
+        <!-- 2: Amsterdam canals -->
         <div class="memory-item">
-          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&q=80" alt="Learning" loading="lazy" />
-          <div class="memory-caption">
-            <div class="memory-caption-text">Seminar sessions</div>
-            <div class="memory-caption-city">Learning &amp; Growth</div>
-          </div>
-        </div>
-        <div class="memory-item">
-          <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=500&q=80" alt="Vienna" loading="lazy" />
-          <div class="memory-caption">
-            <div class="memory-caption-text">Schönbrunn Palace</div>
-            <div class="memory-caption-city">🇦🇹 Vienna</div>
-          </div>
-        </div>
-        <div class="memory-item">
-          <img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=500&q=80" alt="Venice" loading="lazy" />
-          <div class="memory-caption">
-            <div class="memory-caption-text">La Serenissima</div>
-            <div class="memory-caption-city">🇮🇹 Venice</div>
-          </div>
-        </div>
-        <div class="memory-item mem-wide">
-          <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=700&q=80" alt="Connections" loading="lazy" />
-          <div class="memory-caption">
-            <div class="memory-caption-text">Building lifelong friendships</div>
-            <div class="memory-caption-city">Every City, Every Cohort</div>
-          </div>
-        </div>
-        <div class="memory-item">
-          <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&q=80" alt="Paris" loading="lazy" />
-          <div class="memory-caption">
-            <div class="memory-caption-text">La Ville Lumière</div>
-            <div class="memory-caption-city">🇫🇷 Paris</div>
-          </div>
-        </div>
-        <div class="memory-item">
-          <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=500&q=80" alt="Amsterdam" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=600&q=80" alt="Amsterdam canals" loading="lazy" />
           <div class="memory-caption">
             <div class="memory-caption-text">City of canals</div>
             <div class="memory-caption-city">🇳🇱 Amsterdam</div>
           </div>
         </div>
+        <!-- 3: Paris Eiffel Tower -->
         <div class="memory-item">
-          <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=500&q=80" alt="Budapest" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80" alt="Paris Eiffel Tower" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">La Ville Lumière</div>
+            <div class="memory-caption-city">🇫🇷 Paris</div>
+          </div>
+        </div>
+        <!-- 4: Frankfurt skyline -->
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=600&q=80" alt="Frankfurt skyline" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Mainhattan skyline</div>
+            <div class="memory-caption-city">🇩🇪 Frankfurt</div>
+          </div>
+        </div>
+        <!-- 5: Budapest Parliament — wide (spans 2 cols) -->
+        <div class="memory-item mem-wide">
+          <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=800&q=80" alt="Budapest Parliament" loading="lazy" />
           <div class="memory-caption">
             <div class="memory-caption-text">Pearl of the Danube</div>
             <div class="memory-caption-city">🇭🇺 Budapest</div>
+          </div>
+        </div>
+        <!-- 6: Vienna architecture -->
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=600&q=80" alt="Vienna architecture" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Imperial grandeur</div>
+            <div class="memory-caption-city">🇦🇹 Vienna</div>
+          </div>
+        </div>
+        <!-- 7: Barcelona Sagrada Familia -->
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&q=80" alt="Barcelona Sagrada Familia" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Gaudí's masterpiece</div>
+            <div class="memory-caption-city">🇪🇸 Barcelona</div>
+          </div>
+        </div>
+        <!-- 8: Munich Marienplatz -->
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80" alt="Munich Marienplatz" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Heart of Bavaria</div>
+            <div class="memory-caption-city">🇩🇪 Munich</div>
+          </div>
+        </div>
+        <!-- 9: Geneva lake & jet d'eau -->
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=600&q=80" alt="Geneva lake" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Lac Léman serenity</div>
+            <div class="memory-caption-city">🇨🇭 Geneva</div>
+          </div>
+        </div>
+        <!-- 10: Venice canals -->
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=600&q=80" alt="Venice canals" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">La Serenissima</div>
+            <div class="memory-caption-city">🇮🇹 Venice</div>
+          </div>
+        </div>
+        <!-- 11: Brussels Grand Place — wide -->
+        <div class="memory-item mem-wide">
+          <img src="https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=800&q=80" alt="Brussels Grand Place" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Grand Place magnificence</div>
+            <div class="memory-caption-city">🇧🇪 Brussels</div>
+          </div>
+        </div>
+        <!-- 12: Zurich — wide -->
+        <div class="memory-item mem-wide">
+          <img src="https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=800&q=80" alt="Zurich" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Swiss precision &amp; beauty</div>
+            <div class="memory-caption-city">🇨🇭 Zurich</div>
           </div>
         </div>
       </div>
