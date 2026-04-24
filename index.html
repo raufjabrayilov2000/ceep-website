@@ -421,11 +421,12 @@
     .footer-partner { font-size: .78rem; color: rgba(255,255,255,.28); text-align: right; }
     .footer-partner span { color: var(--bronze); }
 
-    /* Logo image in nav */
-    .nav-logo-img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(192,82,40,.3); flex-shrink: 0; }
+    /* Footer connect column logo image */
+    .footer-connect-logo { width: 68px; height: 68px; border-radius: 10px; object-fit: cover; border: 2px solid rgba(255,255,255,.18); display: block; margin-bottom: 1.1rem; box-shadow: 0 4px 16px rgba(0,0,0,.25); transition: border-color .3s; }
+    .footer-connect-logo:hover { border-color: rgba(192,82,40,.5); }
 
-    /* Logo image in footer */
-    .footer-logo-img { height: 52px; width: 52px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,.18); display: block; margin-bottom: .5rem; }
+    /* Professor credits on program cards */
+    .pc-lecturers { font-size: .61rem; color: var(--muted); margin-top: .32rem; padding-top: .28rem; border-top: 1px solid rgba(200,184,152,.4); letter-spacing: .01em; line-height: 1.4; }
 
     /* PDF download button on timeline */
     .tl-download-btn { display: inline-flex; align-items: center; gap: .35rem; background: rgba(122,30,58,.07); border: 1px solid rgba(122,30,58,.28); color: var(--burgundy); font-family: var(--font-body); font-size: .71rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .32rem .85rem; border-radius: 3px; text-decoration: none; transition: background .2s, color .2s, transform .2s; margin-top: .7rem; cursor: none; }
@@ -531,7 +532,7 @@
 
   <!-- NAV -->
   <nav id="navbar">
-    <a href="#" class="nav-logo"><img src="images/logo.jpeg" alt="CEEP" class="nav-logo-img" /><span class="nav-eu-badge">★★★ EU</span></a>
+    <a href="#" class="nav-logo">CE<span>EP</span><span class="nav-eu-badge">★★★ EU</span></a>
     <ul class="nav-links">
       <li><a href="#program">Program</a></li>
       <li><a href="#whatyouget">Experience</a></li>
@@ -728,6 +729,7 @@
           <div class="pc-footer">
             <div class="pc-partner"><span class="pc-done-dot"></span>Organized by <strong>Budapest University of Technology and Economics</strong></div>
           </div>
+          <div class="pc-lecturers">Lecturers: Dr. Bethlendi · Dr. Csete</div>
         </div>
 
         <!-- 2 · Summer 2022 -->
@@ -756,6 +758,10 @@
             <span class="pc-city">🇦🇹 Vienna</span>
             <span class="pc-city">🇨🇿 Prague</span>
           </div>
+          <div class="pc-footer">
+            <div class="pc-partner"><span class="pc-done-dot"></span>Organized by <strong>Budapest University of Technology and Economics</strong></div>
+          </div>
+          <div class="pc-lecturers">Lecturers: Dr. Bethlendi · Dr. Csete · Dr. Lógó</div>
         </div>
 
         <!-- 4 · Summer 2023 -->
@@ -820,6 +826,7 @@
           <div class="pc-footer">
             <div class="pc-partner"><span class="pc-done-dot"></span><strong>BME</strong> &amp; <strong>Prague Business School</strong> collaboration</div>
           </div>
+          <div class="pc-lecturers">Lecturers: Dr. Bethlendi · Dr. Csete · Dr. Lógó</div>
         </div>
 
         <!-- 8 · Summer 2025 -->
@@ -1077,6 +1084,13 @@
         </div>
         <div class="partner-badge">🏛 Verified Academic Partner</div>
       </div>
+      <div class="partner-row reveal" style="margin-top:.8rem;">
+        <div>
+          <div class="partner-label">Academic Partner — Faculty of Economic and Social Sciences</div>
+          <div class="partner-name">Budapest University of Technology and Economics <span style="font-family:var(--font-body);font-size:.82rem;color:var(--muted);font-weight:500;">— BME GTK</span></div>
+        </div>
+        <div class="partner-badge">🏛 Verified Academic Partner</div>
+      </div>
     </div>
   </section>
 
@@ -1126,7 +1140,7 @@
       <div class="footer-stars-band">★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★</div>
       <div class="footer-top">
         <div>
-          <div class="footer-logo"><img src="images/logo.jpeg" alt="CEEP" class="footer-logo-img" /></div>
+          <div class="footer-logo">CE<span>EP</span></div>
           <div class="footer-eu">★★★ &nbsp;EU Programs&nbsp; ★★★</div>
           <p class="footer-tagline">Empowering students to pursue education abroad through cross-cultural academic programs across Europe's most iconic cities.</p>
         </div>
@@ -1143,6 +1157,7 @@
         </div>
         <div>
           <p class="footer-col-title">Connect</p>
+          <img src="images/logo.jpeg" alt="CEEP" class="footer-connect-logo" />
           <ul class="footer-links">
             <li><a href="https://www.instagram.com/ceep.center" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://www.linkedin.com/company/ceep" target="_blank" rel="noopener">LinkedIn</a></li>
