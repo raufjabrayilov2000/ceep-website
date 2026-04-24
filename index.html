@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CEEP — Center for European Education Programs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --ink:          #1C1208;
+      --parchment:    #F5ECD7;
+      --parchment2:   #EAD9BB;
+      --stone:        #D9C9A8;
+      --stone2:       #C8B898;
+      --terracotta:   #C05228;
+      --terracotta-d: #9B3D1B;
+      --burgundy:     #7A1E3A;
+      --bronze:       #B5762E;
+      --eu-blue:      #003399;
+      --eu-gold:      #FFCC00;
+      --muted:        #7A6A54;
+      --orange:       #C05228;
+      --gold:         #B5762E;
+      --blue:         #003399;
+      --gray:         #EAD9BB;
+      --gray2:        #D9C9A8;
+      --border:       #C8B898;
+      --cream:        #F5ECD7;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-serif:   'Cormorant Garamond', Georgia, serif;
+      --font-head:    'Bricolage Grotesque', sans-serif;
+      --font-body:    'Instrument Sans', sans-serif;
+      --banner-h:     0px;
+    }
+
+    body { background: var(--parchment); color: var(--ink); font-family: var(--font-body); overflow-x: hidden; cursor: none; }
+
+    /* Parchment texture overlay */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 9000;
+      background-image:
+        url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z' fill='none' stroke='rgba(120%2C90%2C50%2C0.025)' stroke-width='1'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 60px 60px, 200px 200px;
+      mix-blend-mode: multiply;
+      opacity: 0.55;
+    }
+
+    /* Cursor */
+    .cursor { width: 14px; height: 14px; background: var(--terracotta); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform .12s ease, width .25s ease, height .25s ease; mix-blend-mode: multiply; }
+    .cursor-ring { width: 40px; height: 40px; border: 1.5px solid var(--terracotta); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform .35s cubic-bezier(.23,1,.32,1), width .4s ease, height .4s ease, opacity .3s ease; opacity: .45; }
+    body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height: 20px; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--parchment2); }
+    ::-webkit-scrollbar-thumb { background: var(--terracotta); border-radius: 2px; }
+
+    /* Announcement Banner */
+    .announcement-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: var(--ink); border-bottom: 1.5px solid var(--terracotta); overflow: hidden; }
+    .announcement-banner::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 12% 50%, rgba(192,82,40,.2) 0%, transparent 45%), radial-gradient(ellipse at 88% 50%, rgba(122,30,58,.12) 0%, transparent 45%); pointer-events: none; }
+    .banner-inner { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: .6rem 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .banner-left { display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 0; flex-wrap: wrap; }
+    .banner-pill { display: inline-flex; align-items: center; gap: .4rem; background: var(--terracotta); color: white; font-family: var(--font-body); font-size: .6rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; padding: .22rem .7rem; border-radius: 2px; white-space: nowrap; flex-shrink: 0; }
+    .banner-pill .bdot { width: 5px; height: 5px; border-radius: 50%; background: white; animation: pulse 2s infinite; flex-shrink: 0; }
+    .banner-event { display: flex; align-items: center; gap: .6rem; flex-shrink: 0; }
+    .banner-event-title { font-family: var(--font-head); font-size: .88rem; font-weight: 700; color: white; }
+    .banner-sep { color: rgba(255,255,255,.25); font-size: .9rem; }
+    .banner-dates { font-family: var(--font-body); font-size: .82rem; font-weight: 600; color: var(--terracotta); white-space: nowrap; }
+    .banner-vdivider { width: 1px; height: 22px; background: rgba(255,255,255,.12); flex-shrink: 0; }
+    .banner-prof { display: flex; align-items: center; gap: .6rem; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 5px; padding: .35rem .9rem; min-width: 0; }
+    .banner-prof-avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--terracotta) 0%, #d4713f 100%); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: .75rem; color: white; flex-shrink: 0; }
+    .banner-prof-text { min-width: 0; }
+    .banner-prof-name { font-family: var(--font-head); font-size: .8rem; font-weight: 700; color: white; white-space: nowrap; }
+    .banner-prof-creds { font-size: .62rem; color: rgba(255,255,255,.42); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 340px; display: block; }
+    .banner-right { display: flex; align-items: center; gap: .8rem; flex-shrink: 0; }
+    .banner-cta { display: inline-flex; align-items: center; gap: .35rem; background: var(--terracotta); color: white; font-family: var(--font-body); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; padding: .45rem 1.1rem; border-radius: 2px; white-space: nowrap; transition: background .2s, transform .2s; }
+    .banner-cta:hover { background: var(--terracotta-d); transform: translateY(-1px); }
+    .banner-dismiss { background: none; border: none; cursor: none; color: rgba(255,255,255,.28); font-size: .85rem; line-height: 1; padding: .3rem; flex-shrink: 0; transition: color .2s; }
+    .banner-dismiss:hover { color: rgba(255,255,255,.65); }
+    @media(max-width:960px){ .banner-prof, .banner-vdivider { display: none; } }
+    @media(max-width:640px){ .banner-inner { padding: .55rem 1.2rem; gap: .8rem; } .banner-event { flex-wrap: wrap; gap: .3rem; } .banner-sep { display: none; } }
+
+    /* Navigation */
+    nav { position: fixed; top: var(--banner-h,0px); left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2.5rem; transition: background .4s ease, backdrop-filter .4s ease, border-bottom .4s ease; }
+    nav.scrolled { background: rgba(245,236,215,.93); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(192,82,40,.15); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.7rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: .4rem; }
+    .nav-logo span { color: var(--terracotta); }
+    .nav-eu-badge { display: inline-flex; align-items: center; gap: .25rem; background: var(--eu-blue); padding: .15rem .45rem; border-radius: 2px; font-size: .5rem; color: var(--eu-gold); font-weight: 700; letter-spacing: .05em; text-transform: uppercase; vertical-align: middle; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: var(--font-body); font-size: .78rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { font-family: var(--font-body); font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: white; background: var(--terracotta); border: none; padding: .6rem 1.4rem; border-radius: 2px; cursor: none; text-decoration: none; transition: background .2s, transform .2s; }
+    .nav-cta:hover { background: var(--terracotta-d); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: none; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); transition: transform .3s, opacity .3s; }
+    .mobile-menu { display: none; position: fixed; inset: 0; z-index: 99; background: var(--parchment); flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--font-display); font-size: 3rem; color: var(--ink); text-decoration: none; letter-spacing: .05em; transition: color .2s; }
+    .mobile-menu a:hover { color: var(--terracotta); }
+    @media(max-width:768px){ .nav-links, .nav-cta { display: none; } .hamburger { display: flex; } }
+
+    /* Hero */
+    #hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 2.5rem 5rem; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 10% 85%, rgba(192,82,40,.1) 0%, transparent 55%), radial-gradient(ellipse at 88% 12%, rgba(122,30,58,.07) 0%, transparent 50%), radial-gradient(ellipse at 55% 50%, rgba(181,118,46,.06) 0%, transparent 60%), linear-gradient(155deg, #F5ECD7 0%, #EFE1C5 55%, #EDE4D2 100%); z-index: 0; }
+    .hero-stone-overlay { position: absolute; inset: 0; z-index: 1; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg width='80' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='78' height='18' rx='2' fill='none' stroke='rgba(120%2C90%2C50%2C0.022)' stroke-width='1'/%3E%3Crect x='41' y='21' width='78' height='18' rx='2' fill='none' stroke='rgba(120%2C90%2C50%2C0.022)' stroke-width='1'/%3E%3C/svg%3E"); background-size: 80px 40px; }
+    .hero-cities-bg { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+    .city-float { position: absolute; border-radius: 6px; overflow: hidden; opacity: 0; animation: floatIn 1.2s ease forwards; box-shadow: 0 20px 60px rgba(28,18,8,.18), 0 4px 16px rgba(28,18,8,.1); }
+    .city-float::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--terracotta); z-index: 2; opacity: .7; }
+    .city-float img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.75) sepia(.15) brightness(.82); }
+    .city-float::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(245,236,215,.85) 100%); }
+    .cf1 { width: 280px; height: 180px; top: 12%; right: 8%; animation-delay: .3s; }
+    .cf2 { width: 200px; height: 140px; top: 35%; right: 22%; animation-delay: .6s; }
+    .cf3 { width: 240px; height: 160px; top: 55%; right: 5%; animation-delay: .9s; }
+    .cf4 { width: 180px; height: 120px; top: 20%; right: 38%; animation-delay: 1.1s; }
+    @keyframes floatIn { from { opacity: 0; transform: translateY(30px) scale(.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+    .hero-badge { position: relative; z-index: 3; display: inline-flex; align-items: center; gap: .5rem; background: rgba(192,82,40,.1); border: 1px solid rgba(192,82,40,.3); border-radius: 100px; padding: .4rem 1rem; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1.5rem; width: fit-content; opacity: 0; animation: slideUp .8s .4s ease forwards; }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--terracotta); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: .6; } }
+
+    .hero-title { position: relative; z-index: 3; font-family: var(--font-display); font-size: clamp(4.5rem, 12vw, 10rem); line-height: .9; letter-spacing: -.01em; text-transform: uppercase; color: var(--ink); max-width: 900px; opacity: 0; animation: slideUp .9s .6s ease forwards; }
+    .hero-title .accent { color: var(--terracotta); }
+    .hero-title .outline { -webkit-text-stroke: 2px var(--ink); color: transparent; }
+
+    .hero-serif-accent { position: relative; z-index: 3; font-family: var(--font-serif); font-style: italic; font-size: clamp(1rem, 2.5vw, 1.35rem); color: var(--muted); margin-top: .5rem; letter-spacing: .02em; opacity: 0; animation: slideUp .8s .8s ease forwards; }
+
+    .hero-cities-row { position: relative; z-index: 3; display: flex; align-items: center; gap: .8rem; margin: 1.5rem 0; opacity: 0; animation: slideUp .9s .9s ease forwards; flex-wrap: wrap; }
+    .city-pill { display: flex; align-items: center; gap: .5rem; background: rgba(28,18,8,.05); border: 1px solid rgba(192,82,40,.2); border-radius: 100px; padding: .45rem 1rem; font-size: .82rem; font-weight: 500; letter-spacing: .04em; white-space: nowrap; color: var(--ink); }
+    .city-pill .flag { font-size: 1.1rem; }
+
+    .hero-sub { position: relative; z-index: 3; font-size: clamp(.95rem, 2vw, 1.15rem); color: var(--muted); max-width: 480px; line-height: 1.65; opacity: 0; animation: slideUp .9s 1.1s ease forwards; }
+
+    .hero-actions { position: relative; z-index: 3; display: flex; gap: 1rem; align-items: center; margin-top: 2.5rem; opacity: 0; animation: slideUp .9s 1.3s ease forwards; flex-wrap: wrap; }
+    .btn-primary { font-family: var(--font-body); font-size: .9rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: white; background: var(--terracotta); border: 2px solid var(--terracotta); padding: 1rem 2.2rem; border-radius: 3px; cursor: none; text-decoration: none; display: inline-flex; align-items: center; gap: .6rem; transition: all .25s ease; }
+    .btn-primary:hover { background: transparent; color: var(--terracotta); transform: translateY(-2px); }
+    .btn-secondary { font-family: var(--font-body); font-size: .9rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); background: transparent; border: 2px solid rgba(28,18,8,.2); padding: 1rem 2.2rem; border-radius: 3px; cursor: none; text-decoration: none; transition: all .25s ease; }
+    .btn-secondary:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+    .hero-stats { position: absolute; z-index: 3; bottom: 5rem; right: 2.5rem; display: flex; flex-direction: column; gap: 1.2rem; opacity: 0; animation: fadeIn 1s 1.5s ease forwards; }
+    .stat-item { text-align: right; }
+    .stat-num { font-family: var(--font-display); font-size: 2.4rem; line-height: 1; color: var(--terracotta); }
+    .stat-label { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+    .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: .5rem; opacity: 0; animation: fadeIn 1s 2s ease forwards; }
+    .scroll-hint span { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+    .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--muted), transparent); animation: scrollAnim 2s infinite; }
+    @keyframes scrollAnim { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+    /* Marquee */
+    .marquee-strip { overflow: hidden; background: var(--burgundy); padding: .8rem 0; border-top: 1px solid rgba(181,118,46,.3); border-bottom: 1px solid rgba(181,118,46,.3); }
+    .marquee-track { display: flex; gap: 3rem; white-space: nowrap; animation: marquee 20s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item { font-family: var(--font-display); font-size: 1rem; letter-spacing: .12em; text-transform: uppercase; color: var(--eu-gold); display: flex; align-items: center; gap: 1.5rem; flex-shrink: 0; }
+    .marquee-item::after { content: '✦'; color: rgba(255,204,0,.4); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* Section commons */
+    section { padding: 6rem 2.5rem; }
+    .section-tag { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1rem; }
+    .section-title { font-family: var(--font-display); font-size: clamp(2.8rem, 6vw, 5rem); line-height: .95; text-transform: uppercase; letter-spacing: -.01em; color: var(--ink); }
+    .section-subtitle-serif { font-family: var(--font-serif); font-style: italic; font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted); margin-top: .6rem; }
+    .section-ornament { text-align: center; padding: .5rem 0; font-size: .75rem; color: var(--bronze); letter-spacing: .5em; opacity: .5; margin-top: 2rem; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+    .reveal-delay-5 { transition-delay: .5s; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* Program Section */
+    #program { background: var(--parchment); max-width: 1400px; margin: 0 auto; padding-left: max(2.5rem, 5vw); padding-right: max(2.5rem, 5vw); }
+    .program-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4rem; gap: 2rem; flex-wrap: wrap; }
+    .program-desc { max-width: 360px; font-size: 1rem; line-height: 1.7; color: var(--muted); }
+    .program-season-badge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(192,82,40,.08); border: 1px solid rgba(192,82,40,.22); border-radius: 100px; padding: .35rem .9rem; font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--terracotta); margin-bottom: .8rem; }
+    .cities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+    @media(max-width:900px){ .cities-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:500px){ .cities-grid { grid-template-columns: 1fr; } }
+    .city-card { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 3/4; cursor: none; }
+    .city-card:first-child { aspect-ratio: 3/5; }
+    .city-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease, filter .6s ease; filter: saturate(.75) sepia(.1) brightness(.72); }
+    .city-card:hover img { transform: scale(1.06); filter: saturate(.9) brightness(.78); }
+    .city-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,18,8,.93) 0%, rgba(28,18,8,.15) 55%, transparent 100%); }
+    .city-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--terracotta); z-index: 2; }
+    .city-card::after { content: '✦'; position: absolute; top: 10px; right: 12px; z-index: 3; font-size: .65rem; color: rgba(255,204,0,.55); }
+    .city-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; z-index: 2; }
+    .city-number { font-family: var(--font-display); font-size: .85rem; letter-spacing: .15em; color: var(--eu-gold); margin-bottom: .3rem; }
+    .city-name-large { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1; text-transform: uppercase; letter-spacing: .03em; color: white; }
+    .city-tag-line { margin-top: .5rem; font-size: .8rem; color: rgba(255,255,255,.68); line-height: 1.5; }
+    .city-duration { display: inline-flex; align-items: center; margin-top: .8rem; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--eu-gold); background: rgba(255,204,0,.1); border: 1px solid rgba(255,204,0,.25); border-radius: 100px; padding: .3rem .8rem; }
+
+    /* Past Programs */
+    #past-programs { background: var(--parchment2); border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone); }
+    #past-programs { background-image: url("data:image/svg+xml,%3Csvg width='80' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='78' height='18' rx='2' fill='none' stroke='rgba(120%2C90%2C50%2C0.03)' stroke-width='1'/%3E%3Crect x='41' y='21' width='78' height='18' rx='2' fill='none' stroke='rgba(120%2C90%2C50%2C0.03)' stroke-width='1'/%3E%3C/svg%3E"), linear-gradient(135deg, var(--parchment2) 0%, #e6d4ae 50%, var(--parchment2) 100%); background-size: 80px 40px, 100% 100%; }
+    .past-inner { max-width: 1100px; margin: 0 auto; }
+    .past-section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4rem; gap: 2rem; flex-wrap: wrap; }
+    .past-desc { max-width: 380px; font-size: .95rem; line-height: 1.7; color: var(--muted); }
+    .past-eu-badge { display: inline-flex; align-items: center; gap: .5rem; background: var(--eu-blue); padding: .3rem .9rem; border-radius: 3px; font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--eu-gold); margin-bottom: 1rem; }
+
+    /* Timeline */
+    .timeline { position: relative; }
+    .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent 0%, var(--stone) 4%, var(--stone) 96%, transparent 100%); transform: translateX(-50%); }
+    .tl-year-divider { position: relative; text-align: center; margin: 2.5rem 0 1.5rem; z-index: 2; }
+    .tl-year-divider span { display: inline-block; font-family: var(--font-display); font-size: .82rem; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); background: var(--parchment2); padding: .28rem 1.2rem; border: 1px solid var(--stone); border-radius: 100px; }
+    .tl-year-divider:first-child { margin-top: 0; }
+    .tl-item { position: relative; margin-bottom: 1.8rem; display: flex; align-items: flex-start; }
+    .tl-item.tl-left { justify-content: flex-start; }
+    .tl-item.tl-right { justify-content: flex-end; }
+    .tl-card { width: calc(50% - 2.8rem); background: var(--parchment); border: 1px solid var(--stone); border-radius: 10px; overflow: hidden; position: relative; transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+    .tl-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(28,18,8,.1); }
+    .tl-card-inner { padding: 1.5rem 1.7rem; }
+    .tl-photo-strip { width: 100%; height: 90px; overflow: hidden; position: relative; }
+    .tl-photo-strip img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.7) sepia(.2) brightness(.85); transition: transform .5s ease; display: block; }
+    .tl-card:hover .tl-photo-strip img { transform: scale(1.05); }
+    .tl-photo-strip::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(245,236,215,.6) 100%); }
+    .tl-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 2; }
+    .tl-left .tl-card::after { content: ''; position: absolute; right: -2.8rem; top: 1.45rem; width: 2.8rem; height: 1px; background: var(--stone); }
+    .tl-right .tl-card::after { content: ''; position: absolute; left: -2.8rem; top: 1.45rem; width: 2.8rem; height: 1px; background: var(--stone); }
+    .tl-node { position: absolute; left: 50%; transform: translateX(-50%); top: 1.18rem; width: 12px; height: 12px; border-radius: 50%; border: 2.5px solid var(--parchment2); z-index: 1; transition: transform .3s ease; }
+    .tl-item:hover .tl-node { transform: translateX(-50%) scale(1.45); }
+    .tl-march .tl-node   { background: var(--eu-blue);   box-shadow: 0 0 0 2px rgba(0,51,153,.2); }
+    .tl-summer .tl-node  { background: var(--terracotta); box-shadow: 0 0 0 2px rgba(192,82,40,.2); }
+    .tl-newyear .tl-node { background: var(--bronze);    box-shadow: 0 0 0 2px rgba(181,118,46,.2); }
+    .tl-autumn .tl-node  { background: var(--burgundy);  box-shadow: 0 0 0 2px rgba(122,30,58,.2); }
+    .tl-march .tl-card::before   { background: linear-gradient(90deg, var(--eu-blue), #2255cc); }
+    .tl-summer .tl-card::before  { background: linear-gradient(90deg, var(--terracotta), #d4713f); }
+    .tl-newyear .tl-card::before { background: linear-gradient(90deg, var(--bronze), #d4932a); }
+    .tl-autumn .tl-card::before  { background: linear-gradient(90deg, var(--burgundy), #a0284e); }
+    .tl-march .tl-card:hover   { border-color: rgba(0,51,153,.25); }
+    .tl-summer .tl-card:hover  { border-color: rgba(192,82,40,.25); }
+    .tl-newyear .tl-card:hover { border-color: rgba(181,118,46,.25); }
+    .tl-autumn .tl-card:hover  { border-color: rgba(122,30,58,.25); }
+    .tl-season-tag { display: inline-flex; align-items: center; gap: .35rem; font-size: .61rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; border-radius: 100px; padding: .2rem .65rem; margin-bottom: .65rem; }
+    .tl-march .tl-season-tag   { color: var(--eu-blue);   background: rgba(0,51,153,.06);   border: 1px solid rgba(0,51,153,.14); }
+    .tl-summer .tl-season-tag  { color: var(--terracotta); background: rgba(192,82,40,.06);  border: 1px solid rgba(192,82,40,.14); }
+    .tl-newyear .tl-season-tag { color: var(--bronze);    background: rgba(181,118,46,.06);  border: 1px solid rgba(181,118,46,.18); }
+    .tl-autumn .tl-season-tag  { color: var(--burgundy);  background: rgba(122,30,58,.06);   border: 1px solid rgba(122,30,58,.14); }
+    .tl-title { font-family: var(--font-display); font-size: 1.3rem; line-height: 1; text-transform: uppercase; color: var(--ink); margin-bottom: .75rem; letter-spacing: .02em; }
+    .tl-cities { display: flex; flex-wrap: wrap; gap: .3rem; }
+    .tl-city { display: inline-flex; align-items: center; gap: .3rem; background: rgba(28,18,8,.05); border: 1px solid var(--stone); border-radius: 100px; padding: .25rem .65rem; font-size: .74rem; font-weight: 500; color: var(--ink); }
+    .tl-partner-note { margin-top: .8rem; padding-top: .8rem; border-top: 1px solid var(--stone); font-size: .71rem; color: var(--muted); display: flex; align-items: flex-start; gap: .4rem; line-height: 1.5; }
+    .tl-partner-note strong { color: var(--ink); font-weight: 600; }
+    .tl-done-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; flex-shrink: 0; margin-top: .25rem; }
+    @media(max-width:768px){
+      .timeline::before { left: 8px; transform: none; }
+      .tl-year-divider { text-align: left; padding-left: 2.4rem; }
+      .tl-item.tl-left, .tl-item.tl-right { justify-content: flex-end; }
+      .tl-card { width: calc(100% - 2.6rem); }
+      .tl-left .tl-card::after, .tl-right .tl-card::after { left: -2.2rem; right: auto; width: 2.2rem; top: 1.2rem; }
+      .tl-node { left: 8px; transform: none; top: 1.1rem; }
+      .tl-item:hover .tl-node { transform: scale(1.4); }
+    }
+
+    /* What You Get */
+    #whatyouget { background: var(--parchment); }
+    .wyg-inner { max-width: 1200px; margin: 0 auto; }
+    .wyg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--stone); border: 1px solid var(--stone); border-radius: 10px; overflow: hidden; margin-top: 4rem; }
+    @media(max-width:768px){ .wyg-grid { grid-template-columns: 1fr; } }
+    .wyg-item { background: var(--parchment); padding: 2.5rem 2rem; transition: background .3s; position: relative; }
+    .wyg-item:hover { background: var(--parchment2); }
+    .wyg-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--terracotta); transform: scaleX(0); transform-origin: left; transition: transform .4s ease; }
+    .wyg-item:hover::before { transform: scaleX(1); }
+    .wyg-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .wyg-title { font-family: var(--font-head); font-size: 1.15rem; font-weight: 700; margin-bottom: .6rem; color: var(--ink); }
+    .wyg-desc { font-size: .9rem; color: var(--muted); line-height: 1.65; }
+
+    /* Stats */
+    #stats { padding: 5rem 2.5rem; background: var(--burgundy); position: relative; overflow: hidden; }
+    #stats::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(181,118,46,.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(192,82,40,.1) 0%, transparent 50%); pointer-events: none; }
+    #stats::after { content: '★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★'; position: absolute; top: 0; left: 0; right: 0; text-align: center; font-size: .65rem; color: rgba(255,204,0,.18); padding: .5rem 0; letter-spacing: .3em; }
+    .stats-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem 2.5rem; }
+    @media(max-width:600px){ .stats-inner { grid-template-columns: repeat(2,1fr); gap: 1.5rem; } }
+    .stat-block { border-left: 2px solid rgba(255,204,0,.3); padding-left: 1.5rem; }
+    .stat-big { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 4.5rem); line-height: 1; color: white; }
+    .stat-big .plus { color: var(--eu-gold); }
+    .stat-info { margin-top: .4rem; font-size: .82rem; letter-spacing: .06em; color: rgba(255,255,255,.6); text-transform: uppercase; }
+
+    /* Memories */
+    #memories { background: var(--stone); padding: 6rem 2.5rem; position: relative; overflow: hidden; border-top: 1px solid var(--stone2); }
+    #memories::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg width='80' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='78' height='18' rx='2' fill='none' stroke='rgba(100%2C70%2C30%2C0.04)' stroke-width='1'/%3E%3Crect x='41' y='21' width='78' height='18' rx='2' fill='none' stroke='rgba(100%2C70%2C30%2C0.04)' stroke-width='1'/%3E%3C/svg%3E"); background-size: 80px 40px; pointer-events: none; }
+    .memories-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .memories-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap; }
+    .memories-desc { max-width: 400px; font-size: .95rem; line-height: 1.7; color: var(--muted); }
+    .memories-grid { display: grid; grid-template-columns: repeat(4,1fr); grid-auto-rows: 220px; gap: 1rem; }
+    .memory-item { position: relative; border-radius: 8px; overflow: hidden; cursor: none; }
+    .memory-item img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.75) sepia(.1); transition: transform .5s ease, filter .5s ease; display: block; }
+    .memory-item:hover img { transform: scale(1.06); filter: saturate(.92) sepia(.02); }
+    .memory-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--terracotta); z-index: 2; }
+    .memory-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,18,8,.72) 0%, transparent 55%); opacity: 0; transition: opacity .4s ease; z-index: 1; }
+    .memory-item:hover::after { opacity: 1; }
+    .memory-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; z-index: 3; transform: translateY(8px); opacity: 0; transition: transform .4s ease, opacity .4s ease; }
+    .memory-item:hover .memory-caption { transform: translateY(0); opacity: 1; }
+    .memory-caption-text { font-family: var(--font-serif); font-style: italic; font-size: .95rem; color: white; }
+    .memory-caption-city { font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--eu-gold); margin-top: .2rem; }
+    .memory-item.mem-tall { grid-row: span 2; }
+    .memory-item.mem-wide { grid-column: span 2; }
+    .memories-add-note { text-align: center; margin-top: 2.5rem; font-family: var(--font-serif); font-style: italic; font-size: .95rem; color: var(--muted); opacity: .8; }
+    @media(max-width:900px){ .memories-grid { grid-template-columns: repeat(2,1fr); } .memory-item.mem-tall { grid-row: span 1; } .memory-item.mem-wide { grid-column: span 1; } }
+    @media(max-width:500px){ .memories-grid { grid-template-columns: 1fr; } }
+
+    /* Team */
+    #team { background: var(--parchment2); padding-top: 7rem; }
+    .team-inner { max-width: 1100px; margin: 0 auto; }
+    .team-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 1rem; }
+    @media(max-width:700px){ .team-header { grid-template-columns: 1fr; gap: 2rem; } }
+    .team-desc { font-size: 1rem; line-height: 1.75; color: var(--muted); }
+    .team-group-label { font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin: 2.8rem 0 1.2rem; display: flex; align-items: center; gap: 1rem; }
+    .team-group-label::after { content: ''; flex: 1; height: 1px; background: var(--stone); }
+    .founders-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+    @media(max-width:600px){ .founders-grid { grid-template-columns: 1fr; } }
+    .academics-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
+    @media(max-width:900px){ .academics-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:500px){ .academics-grid { grid-template-columns: 1fr; } }
+    .team-card { position: relative; background: var(--parchment); border: 1px solid var(--stone); border-radius: 10px; overflow: hidden; transition: border-color .3s, transform .3s, box-shadow .3s; }
+    .team-card:hover { border-color: rgba(192,82,40,.35); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(28,18,8,.1); }
+    .team-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--terracotta), var(--burgundy)); z-index: 1; }
+    .team-card-body { padding: 2.5rem; }
+    .team-card.coordinator-card .team-card-body { display: flex; align-items: flex-start; gap: 2rem; }
+    .team-card.academic-card .team-card-body { padding: 1.8rem; }
+    .team-avatar-photo { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; margin-bottom: 1.5rem; flex-shrink: 0; border: 3px solid var(--stone); box-shadow: 0 4px 16px rgba(28,18,8,.15); transition: border-color .3s; }
+    .team-card:hover .team-avatar-photo { border-color: var(--terracotta); }
+    .team-avatar-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .coordinator-card .team-avatar-photo { margin-bottom: 0; width: 72px; height: 72px; }
+    .academic-card .team-avatar-photo { width: 60px; height: 60px; margin-bottom: 1rem; }
+    .team-avatar { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.8rem; color: white; margin-bottom: 1.5rem; flex-shrink: 0; }
+    .coordinator-card .team-avatar { margin-bottom: 0; }
+    .academic-card .team-avatar { width: 56px; height: 56px; font-size: 1.3rem; margin-bottom: 1rem; }
+    .team-role { font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--terracotta); margin-bottom: .4rem; }
+    .team-name { font-family: var(--font-head); font-size: 1.35rem; font-weight: 800; line-height: 1.2; margin-bottom: .8rem; color: var(--ink); }
+    .academic-card .team-name { font-size: 1.05rem; margin-bottom: .5rem; }
+    .team-bio { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+    .academic-card .team-bio { font-size: .82rem; }
+    .team-quote { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--stone); font-family: var(--font-serif); font-style: italic; font-size: .9rem; color: rgba(28,18,8,.42); }
+    .team-location { display: inline-flex; align-items: center; gap: .4rem; margin-top: .8rem; font-size: .75rem; letter-spacing: .05em; color: var(--eu-blue); background: rgba(0,51,153,.06); border: 1px solid rgba(0,51,153,.15); border-radius: 100px; padding: .25rem .7rem; }
+    .partner-row { margin-top: 3rem; padding: 1.8rem 2.5rem; background: var(--parchment); border: 1px solid var(--stone); border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .partner-label { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+    .partner-name { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--ink); }
+    .partner-badge { display: flex; align-items: center; gap: .6rem; font-size: .8rem; color: var(--bronze); background: rgba(181,118,46,.08); border: 1px solid rgba(181,118,46,.22); padding: .5rem 1rem; border-radius: 100px; }
+
+    /* Join */
+    #join { padding: 8rem 2.5rem; position: relative; overflow: hidden; }
+    .join-bg { position: absolute; inset: 0; background: var(--ink); z-index: 0; }
+    .join-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 30%, rgba(192,82,40,.12) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(122,30,58,.15) 0%, transparent 50%); }
+    .join-eu-stars { position: absolute; top: 0; left: 0; right: 0; z-index: 2; text-align: center; font-size: .65rem; color: rgba(255,204,0,.25); padding: .5rem 0; letter-spacing: .5em; }
+    .join-glow { position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(192,82,40,.1) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 1; animation: glowPulse 4s ease-in-out infinite; }
+    @keyframes glowPulse { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity: .8; } 50% { transform: translate(-50%,-50%) scale(1.12); opacity: 1; } }
+    .join-inner { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; text-align: center; }
+    .join-inner .section-tag { color: rgba(255,204,0,.7); }
+    .join-title { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); line-height: .93; text-transform: uppercase; letter-spacing: -.01em; margin-bottom: 2rem; color: white; }
+    .join-title .outline { -webkit-text-stroke: 2px white; color: transparent; }
+    .join-desc { font-size: 1.05rem; color: rgba(255,255,255,.75); line-height: 1.75; max-width: 520px; margin: 0 auto 3rem; font-family: var(--font-serif); font-style: italic; }
+    .join-roles { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+    .role-badge { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); border-radius: 100px; padding: .6rem 1.4rem; font-size: .82rem; font-weight: 500; letter-spacing: .04em; color: white; }
+    .join-cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .join-inner .btn-primary { background: var(--terracotta); color: white; border-color: var(--terracotta); }
+    .join-inner .btn-primary:hover { background: transparent; color: white; border-color: white; }
+    .btn-outline-white { font-family: var(--font-body); font-size: .9rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: white; background: transparent; border: 2px solid rgba(255,255,255,.35); padding: 1rem 2.2rem; border-radius: 3px; cursor: none; text-decoration: none; transition: all .25s ease; }
+    .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,.08); transform: translateY(-2px); }
+
+    /* Social */
+    #social { padding: 5rem 2.5rem; background: var(--parchment2); border-top: 1px solid var(--stone); }
+    .social-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .social-eyebrow { font-size: .75rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 2rem; }
+    .social-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    .social-link { display: flex; align-items: center; gap: .9rem; background: var(--parchment); border: 1px solid var(--stone); border-radius: 10px; padding: 1.2rem 2rem; text-decoration: none; color: var(--ink); transition: all .3s ease; min-width: 200px; }
+    .social-link:hover { transform: translateY(-4px); border-color: rgba(192,82,40,.3); box-shadow: 0 8px 30px rgba(28,18,8,.1); }
+    .social-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .si-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .si-li { background: #0077B5; }
+    .social-text { text-align: left; }
+    .social-platform { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .social-handle { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--ink); }
+
+    /* Footer */
+    footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,.07); padding: 4rem 2.5rem 3rem; position: relative; overflow: hidden; }
+    footer::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg width='80' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='78' height='18' rx='2' fill='none' stroke='rgba(255%2C255%2C255%2C0.015)' stroke-width='1'/%3E%3Crect x='41' y='21' width='78' height='18' rx='2' fill='none' stroke='rgba(255%2C255%2C255%2C0.015)' stroke-width='1'/%3E%3C/svg%3E"); background-size: 80px 40px; pointer-events: none; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .footer-stars-band { text-align: center; font-size: .6rem; color: rgba(255,204,0,.18); letter-spacing: .5em; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,204,0,.07); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+    @media(max-width:768px){ .footer-top { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .footer-logo { font-family: var(--font-display); font-size: 2.5rem; letter-spacing: .05em; color: white; margin-bottom: .5rem; }
+    .footer-logo span { color: var(--terracotta); }
+    .footer-eu { display: inline-flex; align-items: center; gap: .3rem; background: var(--eu-blue); padding: .18rem .55rem; border-radius: 2px; font-size: .5rem; color: var(--eu-gold); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .8rem; }
+    .footer-tagline { font-size: .92rem; color: rgba(255,255,255,.35); line-height: 1.65; max-width: 300px; }
+    .footer-col-title { font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 1.2rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .footer-links a { font-size: .88rem; color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: white; }
+    .footer-bottom { margin-top: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .footer-copy { font-size: .78rem; color: rgba(255,255,255,.28); }
+    .footer-partner { font-size: .78rem; color: rgba(255,255,255,.28); text-align: right; }
+    .footer-partner span { color: var(--bronze); }
+
+    /* Utilities */
+    .container { max-width: 1200px; margin: 0 auto; }
+    .mt-2 { margin-top: 2rem; }
+
+    /* Mobile fixes */
+    @media(max-width:768px){
+      section { padding: 4rem 1.5rem; }
+      #hero { padding: 0 1.5rem 4rem; }
+      .hero-stats { display: none; }
+      .cf1,.cf2,.cf3,.cf4 { display: none; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .footer-partner { text-align: left; }
+      .team-card.coordinator-card .team-card-body { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ANNOUNCEMENT BANNER -->
+  <div class="announcement-banner" id="announcementBanner">
+    <div class="banner-inner">
+      <div class="banner-left">
+        <div class="banner-pill"><span class="bdot"></span>Upcoming</div>
+        <div class="banner-event">
+          <span class="banner-event-title">International Summer School</span>
+          <span class="banner-sep">·</span>
+          <span class="banner-dates">1–7 August 2026</span>
+        </div>
+        <div class="banner-vdivider"></div>
+        <div class="banner-prof">
+          <div class="banner-prof-avatar">WS</div>
+          <div class="banner-prof-text">
+            <span class="banner-prof-name">Prof. Wadim Strielkowski</span>
+            <span class="banner-prof-creds">Prague Business School · Former Visiting Prof at UC Berkeley · 220+ Web of Science Publications</span>
+          </div>
+        </div>
+      </div>
+      <div class="banner-right">
+        <a href="#join" class="banner-cta">Apply Now ↗</a>
+        <button class="banner-dismiss" id="bannerDismiss" aria-label="Dismiss banner">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">CE<span>EP</span><span class="nav-eu-badge">★★★ EU</span></a>
+    <ul class="nav-links">
+      <li><a href="#program">Program</a></li>
+      <li><a href="#whatyouget">Experience</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#join">Join</a></li>
+    </ul>
+    <a href="#join" class="nav-cta">Apply Now</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#program" onclick="closeMobile()">Program</a>
+    <a href="#whatyouget" onclick="closeMobile()">Experience</a>
+    <a href="#team" onclick="closeMobile()">Team</a>
+    <a href="#join" onclick="closeMobile()">Join</a>
+    <a href="#join" class="btn-primary" onclick="closeMobile()">Apply Now ↗</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-stone-overlay"></div>
+    <div class="hero-cities-bg">
+      <div class="city-float cf1"><img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=600&q=75" alt="Prague" loading="lazy" /></div>
+      <div class="city-float cf2"><img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=500&q=75" alt="Munich" loading="lazy" /></div>
+      <div class="city-float cf3"><img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=500&q=75" alt="Geneva" loading="lazy" /></div>
+      <div class="city-float cf4"><img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=450&q=75" alt="Barcelona" loading="lazy" /></div>
+    </div>
+
+    <div class="hero-badge"><span class="dot"></span>Enrolling Now — Summer School 2025</div>
+
+    <h1 class="hero-title">
+      Europe<br/>
+      is your<br/>
+      <span class="accent">class</span><span class="outline">room</span>
+    </h1>
+    <p class="hero-serif-accent">Four cities. One extraordinary journey across Europe.</p>
+
+    <div class="hero-cities-row">
+      <div class="city-pill"><span class="flag">🇨🇿</span> Prague</div>
+      <div class="city-pill"><span class="flag">🇩🇪</span> Munich</div>
+      <div class="city-pill"><span class="flag">🇨🇭</span> Geneva</div>
+      <div class="city-pill"><span class="flag">🇪🇸</span> Barcelona</div>
+    </div>
+
+    <p class="hero-sub">CEEP takes ambitious students on a cross-cultural academic journey through four iconic European cities — combining elite seminars with the experience of a lifetime.</p>
+
+    <div class="hero-actions">
+      <a href="#join" class="btn-primary">Join the Program ↗</a>
+      <a href="#program" class="btn-secondary">See the Route</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">400<span style="font-size:1.4rem;color:rgba(192,82,40,.65)">+</span></div><div class="stat-label">Participants</div></div>
+      <div class="stat-item"><div class="stat-num">14</div><div class="stat-label">Cities</div></div>
+      <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">Programs</div></div>
+    </div>
+    <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span class="marquee-item">Academic Seminars</span>
+      <span class="marquee-item">Business Workshops</span>
+      <span class="marquee-item">Prague · Munich · Geneva · Barcelona</span>
+      <span class="marquee-item">Cross-Cultural Experience</span>
+      <span class="marquee-item">European Education</span>
+      <span class="marquee-item">Webinars &amp; Networking</span>
+      <span class="marquee-item">Organizational Management</span>
+      <span class="marquee-item">Academic Seminars</span>
+      <span class="marquee-item">Business Workshops</span>
+      <span class="marquee-item">Prague · Munich · Geneva · Barcelona</span>
+      <span class="marquee-item">Cross-Cultural Experience</span>
+      <span class="marquee-item">European Education</span>
+      <span class="marquee-item">Webinars &amp; Networking</span>
+      <span class="marquee-item">Organizational Management</span>
+    </div>
+  </div>
+
+  <!-- PROGRAM -->
+  <section id="program">
+    <div class="program-header">
+      <div>
+        <div class="program-season-badge">☀️ Summer School 2025</div>
+        <p class="section-tag reveal">The Route</p>
+        <h2 class="section-title reveal reveal-delay-1">Four Cities.<br/>One Journey.</h2>
+      </div>
+      <p class="program-desc reveal reveal-delay-2">From the historic corridors of Prague to the sun-drenched boulevards of Barcelona — every stop on the CEEP Summer School route is a new chapter in your education and your story.</p>
+    </div>
+    <div class="cities-grid">
+      <div class="city-card reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=600&q=80" alt="Prague skyline" loading="lazy" />
+        <div class="city-card-overlay"></div>
+        <div class="city-card-content">
+          <div class="city-number">01 / KICKOFF</div>
+          <div class="city-name-large">Prague</div>
+          <div class="city-tag-line">Seminars at the Prague Institute for Qualification Enhancement. The spark that starts it all.</div>
+          <div class="city-duration">2–3 Day Seminar</div>
+        </div>
+      </div>
+      <div class="city-card reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80" alt="Munich" loading="lazy" />
+        <div class="city-card-overlay"></div>
+        <div class="city-card-content">
+          <div class="city-number">02 / INNOVATION</div>
+          <div class="city-name-large">Munich</div>
+          <div class="city-tag-line">Business &amp; economics workshops in Germany's powerhouse city. Meet the engines of Europe.</div>
+          <div class="city-duration">Workshops &amp; Tours</div>
+        </div>
+      </div>
+      <div class="city-card reveal reveal-delay-3">
+        <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=600&q=80" alt="Geneva lake" loading="lazy" />
+        <div class="city-card-overlay"></div>
+        <div class="city-card-content">
+          <div class="city-number">03 / DIPLOMACY</div>
+          <div class="city-name-large">Geneva</div>
+          <div class="city-tag-line">Global governance, international orgs &amp; the pulse of world diplomacy. Think bigger.</div>
+          <div class="city-duration">Webinars &amp; Sessions</div>
+        </div>
+      </div>
+      <div class="city-card reveal reveal-delay-4">
+        <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&q=80" alt="Barcelona Sagrada Familia" loading="lazy" />
+        <div class="city-card-overlay"></div>
+        <div class="city-card-content">
+          <div class="city-number">04 / CULTURE</div>
+          <div class="city-name-large">Barcelona</div>
+          <div class="city-tag-line">Creativity, entrepreneurship &amp; Mediterranean energy. End your journey on a high.</div>
+          <div class="city-duration">Cultural Immersion</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAST PROGRAMS -->
+  <section id="past-programs">
+    <div class="past-inner">
+      <div class="past-section-header">
+        <div>
+          <div class="past-eu-badge reveal">★★★ &nbsp;European Programs&nbsp; ★★★</div>
+          <p class="section-tag reveal">Program History</p>
+          <h2 class="section-title reveal reveal-delay-1">10 Programs.<br/>4 Years.</h2>
+          <p class="section-subtitle-serif reveal reveal-delay-2">A journey through the heart of Europe.</p>
+        </div>
+        <p class="past-desc reveal reveal-delay-2">From Budapest to Barcelona — CEEP has brought hundreds of students across 18+ European cities since 2022. Every edition a new chapter, every cohort a new story.</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="tl-year-divider reveal"><span>2022</span></div>
+
+        <div class="tl-item tl-march tl-left reveal reveal-delay-1">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=400&q=70" alt="Budapest" loading="lazy" /></div>
+            <div class="tl-card-inner">
+              <div class="tl-season-tag">🌸 March 2022</div>
+              <div class="tl-title">Spring Program</div>
+              <div class="tl-cities">
+                <span class="tl-city">🇭🇺 Budapest</span>
+                <span class="tl-city">🇦🇹 Vienna</span>
+                <span class="tl-city">🇫🇷 Paris</span>
+              </div>
+              <div class="tl-partner-note"><span class="tl-done-dot"></span>Organized by <strong>Budapest University of Technology and Economics</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item tl-summer tl-right reveal reveal-delay-2">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=400&q=70" alt="Prague" loading="lazy" /></div>
+            <div class="tl-card-inner">
+              <div class="tl-season-tag">☀️ Summer 2022</div>
+              <div class="tl-title">Summer School</div>
+              <div class="tl-cities">
+                <span class="tl-city">🇨🇿 Prague</span>
+                <span class="tl-city">🇩🇪 Berlin</span>
+                <span class="tl-city">🇦🇹 Vienna</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-year-divider reveal"><span>2023</span></div>
+
+        <div class="tl-item tl-march tl-left reveal reveal-delay-1">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=400&q=70" alt="Budapest" loading="lazy" /></div>
+            <div class="tl-card-inner">
+              <div class="tl-season-tag">🌸 March 2023</div>
+              <div class="tl-title">Spring Program</div>
+              <div class="tl-cities">
+                <span class="tl-city">🇭🇺 Budapest</span>
+                <span class="tl-city">🇦🇹 Vienna</span>
+                <span class="tl-city">🇨🇿 Prague</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item tl-summer tl-right reveal reveal-delay-2">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=400&q=70" alt="Venice" loading="lazy" /></div>
+            <div class="tl-card-inner">
+              <div class="tl-season-tag">☀️ Summer 2023</div>
+              <div class="tl-title">Summer School</div>
+              <div class="tl-cities">
+                <span class="tl-city">🇨🇿 Prague</span>
+                <span class="tl-city">🇮🇹 Venezia</span>
+                <span class="tl-city">🇦🇹 Vienna</span>
+                <span class="tl-city">🇭🇺 Budapest</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item tl-newyear tl-left reveal reveal-delay-3">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=70" alt="Paris" loading="lazy" /></div>
+            <div class="tl-card-inner">
+              <div class="tl-season-tag">🎆 New Year 2023</div>
+              <div class="tl-title">New Year Edition</div>
+              <div class="tl-cities">
+                <span class="tl-city">🇨🇿 Prague</span>
+                <span class="tl-city">🇩🇪 Frankfurt</span>
+                <span class="tl-city">🇧🇪 Brussels</span>
+                <span class="tl-city">🇫🇷 Paris</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-year-divider reveal"><span>2024</span></div>
+
+        <div class="tl-item tl-summer tl-right reveal reveal-delay-1">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=400&q=70" alt="Amsterdam" loading="lazy" /></div>
+            <div class="tl-card-inner">
+              <div class="tl-season-tag">☀️ Summer 2024</div>
+              <div class="tl-title">Summer School</div>
+              <div class="tl-cities">
+                <span class="tl-city">🇨🇿 Prague</span>
+                <span class="tl-city">🇦🇹 Vienna</span>
+                <span class="tl-city">🇩🇪 Frankfurt</span>
+                <span class="tl-city">🇳🇱 Amsterdam</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-year-divider reveal"><span>2025</span></div>
+
+        <div class="tl-item tl-march tl-left reveal reveal-delay-1">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=400&q=70" alt="Brussels" loading="lazy" /></div>
+            <div class="tl-card-inner">
+              <div class="tl-season-tag">🌸 March 2025</div>
+              <div class="tl-title">Spring Program</div>
+              <div class="tl-cities">
+                <span class="tl-city">🇧🇪 Brussels</span>
+                <span class="tl-city">🇳🇱 Amsterdam</span>
+                <span class="tl-city">🇫🇷 Paris</span>
+                <span class="tl-city">🇩🇪 Munich</span>
+                <span class="tl-city">🇨🇿 Prague</span>
+              </div>
+              <div class="tl-partner-note"><span class="tl-done-dot"></span><strong>BME</strong> &amp; <strong>Prague Business School</strong> collaboration</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item tl-summer tl-right reveal reveal-delay-2">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=400&q=70" alt="Venice" loading="lazy" /></div>
+            <div class="tl-card-inner">
+              <div class="tl-season-tag">☀️ Summer 2025</div>
+              <div class="tl-title">Summer School</div>
+              <div class="tl-cities">
+                <span class="tl-city">🇮🇹 Venezia</span>
+                <span class="tl-city">🇮🇹 Milano</span>
+                <span class="tl-city">🇨🇭 Zurich</span>
+                <span class="tl-city">🇨🇭 Geneva</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item tl-autumn tl-left reveal reveal-delay-3">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=400&q=70" alt="Budapest" loading="lazy" /></div>
+            <div class="tl-card-inner">
+              <div class="tl-season-tag">🍂 November 2025</div>
+              <div class="tl-title">Autumn Program</div>
+              <div class="tl-cities">
+                <span class="tl-city">🇭🇺 Budapest</span>
+                <span class="tl-city">🇮🇹 Venezia</span>
+                <span class="tl-city">🇮🇹 Milano</span>
+                <span class="tl-city">🇮🇹 Roma</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-year-divider reveal"><span>2026</span></div>
+
+        <div class="tl-item tl-march tl-right reveal reveal-delay-1">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-photo-strip"><img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=400&q=70" alt="Prague" loading="lazy" /></div>
+            <div class="tl-card-inner">
+              <div class="tl-season-tag">🌸 March 2026</div>
+              <div class="tl-title">Spring Program</div>
+              <div class="tl-cities">
+                <span class="tl-city">🇨🇿 Prague</span>
+                <span class="tl-city">🇩🇪 Frankfurt</span>
+                <span class="tl-city">🇳🇱 Amsterdam</span>
+                <span class="tl-city">🇫🇷 Paris</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section id="whatyouget">
+    <div class="wyg-inner">
+      <p class="section-tag reveal">The Full Package</p>
+      <h2 class="section-title reveal reveal-delay-1">What You Actually Get</h2>
+      <div class="wyg-grid">
+        <div class="wyg-item reveal reveal-delay-1"><div class="wyg-icon">🎓</div><div class="wyg-title">Academic Seminars</div><div class="wyg-desc">Deep-dive sessions covering business, economics, and organizational management — led by professionals with real-world authority.</div></div>
+        <div class="wyg-item reveal reveal-delay-2"><div class="wyg-icon">🛠</div><div class="wyg-title">Hands-On Workshops</div><div class="wyg-desc">Not just theory. Practical workshops that translate knowledge into skills you can actually use, in cities where it counts.</div></div>
+        <div class="wyg-item reveal reveal-delay-3"><div class="wyg-icon">💻</div><div class="wyg-title">Live Webinars</div><div class="wyg-desc">Connect with experts, thought leaders, and institutions across Europe — expanding your network before you even land back home.</div></div>
+        <div class="wyg-item reveal reveal-delay-2"><div class="wyg-icon">🌍</div><div class="wyg-title">Cross-Cultural Exposure</div><div class="wyg-desc">Living across four countries in one cohort transforms your worldview. You come back different — and that's the whole point.</div></div>
+        <div class="wyg-item reveal reveal-delay-3"><div class="wyg-icon">🤝</div><div class="wyg-title">A Real Cohort</div><div class="wyg-desc">24 ambitious students. 2 dedicated coordinators. 2 expert lecturers. Small group, massive impact. The people you meet here will matter.</div></div>
+        <div class="wyg-item reveal reveal-delay-4"><div class="wyg-icon">🏛</div><div class="wyg-title">Institutional Partnership</div><div class="wyg-desc">Backed by the Prague Institute for Qualification Enhancement — a recognized institution that adds weight to everything you experience.</div></div>
+      </div>
+      <div class="section-ornament reveal">✦ &nbsp; ◆ &nbsp; ✦</div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stats-inner">
+      <div class="stat-block reveal"><div class="stat-big">400<span class="plus">+</span></div><div class="stat-info">Participants</div></div>
+      <div class="stat-block reveal reveal-delay-1"><div class="stat-big">9</div><div class="stat-info">Completed Programs</div></div>
+      <div class="stat-block reveal reveal-delay-2"><div class="stat-big">7</div><div class="stat-info">Years Experience</div></div>
+      <div class="stat-block reveal reveal-delay-3"><div class="stat-big">3</div><div class="stat-info">Core Team Members</div></div>
+      <div class="stat-block reveal reveal-delay-4"><div class="stat-big">4</div><div class="stat-info">Academic Staff</div></div>
+      <div class="stat-block reveal reveal-delay-5"><div class="stat-big">14</div><div class="stat-info">European Cities</div></div>
+    </div>
+  </section>
+
+  <!-- MEMORIES / GALLERY -->
+  <section id="memories">
+    <div class="memories-inner">
+      <div class="memories-header">
+        <div>
+          <p class="section-tag reveal">Our Journey</p>
+          <h2 class="section-title reveal reveal-delay-1">Memories</h2>
+          <p class="section-subtitle-serif reveal reveal-delay-2">Moments from across Europe, captured in time.</p>
+        </div>
+        <p class="memories-desc reveal reveal-delay-2">Every program leaves a mark. Here are some of the moments that made CEEP what it is — and what it's becoming. More memories added after each program.</p>
+      </div>
+
+      <div class="memories-grid reveal">
+        <div class="memory-item mem-tall">
+          <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=600&q=80" alt="Prague Charles Bridge" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Charles Bridge at dawn</div>
+            <div class="memory-caption-city">🇨🇿 Prague</div>
+          </div>
+        </div>
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&q=80" alt="Learning" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Seminar sessions</div>
+            <div class="memory-caption-city">Learning &amp; Growth</div>
+          </div>
+        </div>
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=500&q=80" alt="Vienna" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Schönbrunn Palace</div>
+            <div class="memory-caption-city">🇦🇹 Vienna</div>
+          </div>
+        </div>
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=500&q=80" alt="Venice" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">La Serenissima</div>
+            <div class="memory-caption-city">🇮🇹 Venice</div>
+          </div>
+        </div>
+        <div class="memory-item mem-wide">
+          <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=700&q=80" alt="Connections" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Building lifelong friendships</div>
+            <div class="memory-caption-city">Every City, Every Cohort</div>
+          </div>
+        </div>
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&q=80" alt="Paris" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">La Ville Lumière</div>
+            <div class="memory-caption-city">🇫🇷 Paris</div>
+          </div>
+        </div>
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=500&q=80" alt="Amsterdam" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">City of canals</div>
+            <div class="memory-caption-city">🇳🇱 Amsterdam</div>
+          </div>
+        </div>
+        <div class="memory-item">
+          <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=500&q=80" alt="Budapest" loading="lazy" />
+          <div class="memory-caption">
+            <div class="memory-caption-text">Pearl of the Danube</div>
+            <div class="memory-caption-city">🇭🇺 Budapest</div>
+          </div>
+        </div>
+      </div>
+      <p class="memories-add-note reveal">More memories added after each program.</p>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="team-inner">
+      <div class="team-header">
+        <div>
+          <p class="section-tag reveal">The People Behind It</p>
+          <h2 class="section-title reveal reveal-delay-1">Meet the<br/>Team</h2>
+        </div>
+        <p class="team-desc reveal reveal-delay-2">CEEP is built by people who believe education should be an adventure. Our team combines academic rigor with the energy to make every experience unforgettable.</p>
+      </div>
+
+      <!-- Co-Founders -->
+      <div class="team-group-label reveal">Co-Founders</div>
+      <div class="founders-grid">
+        <div class="team-card reveal reveal-delay-1">
+          <div class="team-card-body">
+            <div class="team-avatar-photo"><img src="images/rauf.jpeg" alt="Rauf Jabrayilov" /></div>
+            <div class="team-role">Co-Founder</div>
+            <div class="team-name">Rauf Jabrayilov PhD.c.</div>
+            <div class="team-bio">PhD candidate and academic architect of the CEEP program. Rauf brings scholarly depth and strategic vision to every seminar, partnership, and program milestone.</div>
+            <div class="team-quote">"The best education happens when you step outside your comfort zone — ideally in a different country."</div>
+          </div>
+        </div>
+        <div class="team-card reveal reveal-delay-2">
+          <div class="team-card-body">
+            <div class="team-avatar-photo"><img src="images/nazrin.jpeg" alt="Nazrin Rzayeva" /></div>
+            <div class="team-role">Co-Founder</div>
+            <div class="team-name">Nazrin Rzayeva</div>
+            <div class="team-bio">Visionary co-founder and program architect of CEEP. Nazrin brings creative leadership and strategic clarity to every initiative, shaping the program's identity from the ground up.</div>
+            <div class="team-quote">"Building CEEP means building a new kind of educational experience — one that stays with you forever."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- General Coordinator -->
+      <div class="team-group-label reveal">General Coordinator</div>
+      <div class="team-card coordinator-card reveal">
+        <div class="team-card-body">
+          <div class="team-avatar" style="background: linear-gradient(135deg, var(--eu-blue) 0%, #2255cc 100%);">SS</div>
+          <div>
+            <div class="team-role">General Coordinator</div>
+            <div class="team-name">Suleyman Suleymanli</div>
+            <div class="team-bio">The central coordination force behind CEEP's cross-border operations. Suleyman manages the logistical framework that keeps programs running smoothly across multiple European countries — bridging teams, institutions, and students with precision and care.</div>
+            <div class="team-location">📍 Based in Italy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic Staff -->
+      <div class="team-group-label reveal">Academic Staff</div>
+      <div class="academics-grid">
+        <div class="team-card academic-card reveal reveal-delay-1">
+          <div class="team-card-body">
+            <div class="team-avatar-photo"><img src="images/aida.jpeg" alt="Aida Guliyeva" /></div>
+            <div class="team-role">Dean</div>
+            <div class="team-name">Aida Guliyeva</div>
+            <div class="team-bio">Dean of the Sabah Center, bringing institutional authority and academic excellence to CEEP's curriculum.</div>
+          </div>
+        </div>
+        <div class="team-card academic-card reveal reveal-delay-2">
+          <div class="team-card-body">
+            <div class="team-avatar" style="background: linear-gradient(135deg, #1F3B2F 0%, #2D5442 100%); width:56px; height:56px; font-size:1.3rem; margin-bottom:1rem;">AG</div>
+            <div class="team-role">Deputy Dean</div>
+            <div class="team-name">Aysel Guliyeva</div>
+            <div class="team-bio">Deputy Dean at International School of Economics (ISE) at UNEC. Bridges high-level academia with practical program design.</div>
+          </div>
+        </div>
+        <div class="team-card academic-card reveal reveal-delay-3">
+          <div class="team-card-body">
+            <div class="team-avatar-photo"><img src="images/aygun.jpeg" alt="Aygun Abdulova" /></div>
+            <div class="team-role">Lecturer at UNEC</div>
+            <div class="team-name">Aygun Abdulova</div>
+            <div class="team-bio">Brings rigorous academic content and engaging delivery to CEEP's seminar sessions across European programs.</div>
+          </div>
+        </div>
+        <div class="team-card academic-card reveal reveal-delay-4">
+          <div class="team-card-body">
+            <div class="team-avatar" style="background: linear-gradient(135deg, var(--burgundy) 0%, #a0284e 100%); width:56px; height:56px; font-size:1.3rem; margin-bottom:1rem;">HA</div>
+            <div class="team-role">Lecturer at UNEC</div>
+            <div class="team-name">Hikmat Abdulov</div>
+            <div class="team-bio">Contributes deep subject expertise and practical insight to every CEEP educational module and workshop.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="partner-row reveal mt-2">
+        <div>
+          <div class="partner-label">Official Partner Institution</div>
+          <div class="partner-name">Prague Institute for Qualification Enhancement</div>
+        </div>
+        <div class="partner-badge">🏛 Verified Academic Partner</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section id="join">
+    <div class="join-bg"></div>
+    <div class="join-eu-stars">★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★</div>
+    <div class="join-glow"></div>
+    <div class="join-inner">
+      <p class="section-tag reveal" style="justify-content:center;display:flex;">Build With Us</p>
+      <h2 class="join-title reveal reveal-delay-1">Ready to<br/><span class="outline">Shape</span><br/>the Future?</h2>
+      <p class="join-desc reveal reveal-delay-2">CEEP is growing. Whether you want to join as a student, coordinator, or organizer — we're looking for people with drive, curiosity, and the ambition to make things happen.</p>
+      <div class="join-roles reveal reveal-delay-3">
+        <div class="role-badge">🎒 Program Student</div>
+        <div class="role-badge">📋 Coordinator</div>
+        <div class="role-badge">🎤 Workshop Speaker</div>
+        <div class="role-badge">🌐 Partner Organization</div>
+      </div>
+      <div class="join-cta-group reveal reveal-delay-4">
+        <a href="https://www.instagram.com/ceep.center" target="_blank" rel="noopener" class="btn-primary">Apply via Instagram ↗</a>
+        <a href="https://www.linkedin.com/company/ceep" target="_blank" rel="noopener" class="btn-outline-white">Connect on LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section id="social">
+    <div class="social-inner">
+      <p class="social-eyebrow reveal">Follow the Journey</p>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center;margin-bottom:3rem;">Stay in the<br/>Loop</h2>
+      <div class="social-links reveal reveal-delay-2">
+        <a href="https://www.instagram.com/ceep.center" target="_blank" rel="noopener" class="social-link">
+          <div class="social-icon si-ig">📸</div>
+          <div class="social-text"><div class="social-platform">Instagram</div><div class="social-handle">@ceep.center</div></div>
+        </a>
+        <a href="https://www.linkedin.com/company/ceep" target="_blank" rel="noopener" class="social-link">
+          <div class="social-icon si-li">💼</div>
+          <div class="social-text"><div class="social-platform">LinkedIn</div><div class="social-handle">CEEP — Center for<br/>European Education Programs</div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-stars-band">★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★</div>
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">CE<span>EP</span></div>
+          <div class="footer-eu">★★★ &nbsp;EU Programs&nbsp; ★★★</div>
+          <p class="footer-tagline">Empowering students to pursue education abroad through cross-cultural academic programs across Europe's most iconic cities.</p>
+        </div>
+        <div>
+          <p class="footer-col-title">Navigate</p>
+          <ul class="footer-links">
+            <li><a href="#program">Summer School</a></li>
+            <li><a href="#past-programs">Past Programs</a></li>
+            <li><a href="#memories">Memories</a></li>
+            <li><a href="#whatyouget">Experience</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#join">Join CEEP</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Connect</p>
+          <ul class="footer-links">
+            <li><a href="https://www.instagram.com/ceep.center" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/ceep" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 CEEP — Center for European Education Programs. All rights reserved.</p>
+        <p class="footer-partner">In partnership with <span>Prague Institute for Qualification Enhancement</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Announcement Banner offset
+    const announcementBanner = document.getElementById('announcementBanner');
+    const navbar = document.getElementById('navbar');
+    function updateBannerOffset() {
+      const h = announcementBanner && announcementBanner.style.display !== 'none'
+        ? announcementBanner.offsetHeight : 0;
+      document.documentElement.style.setProperty('--banner-h', h + 'px');
+    }
+    updateBannerOffset();
+    window.addEventListener('resize', updateBannerOffset, { passive: true });
+    document.getElementById('bannerDismiss')?.addEventListener('click', () => {
+      if (announcementBanner) { announcementBanner.style.display = 'none'; updateBannerOffset(); }
+    });
+
+    // Custom Cursor
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    });
+    function animRing() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+    document.addEventListener('mousedown', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(0.7)';
+      ring.style.transform   = 'translate(-50%,-50%) scale(0.8)';
+    });
+    document.addEventListener('mouseup', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.transform   = 'translate(-50%,-50%) scale(1)';
+    });
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Hamburger menu
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+    function closeMobile() { mobileMenu.classList.remove('open'); }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // Counter animation
+    const statObsSpecial = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const target = parseInt(el.dataset.target);
+          const hasPlusSpan = el.dataset.hasPlusSpan === 'true';
+          const start = performance.now();
+          const duration = 1800;
+          const update = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const val = Math.round(eased * target);
+            if (hasPlusSpan) { el.innerHTML = val + '<span class="plus">+</span>'; }
+            else { el.textContent = val + (el.dataset.suffix || ''); }
+            if (progress < 1) requestAnimationFrame(update);
+          };
+          requestAnimationFrame(update);
+          statObsSpecial.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-big').forEach(el => {
+      const text = el.textContent.trim();
+      const num = parseInt(text);
+      if (!isNaN(num)) {
+        const hasPlusInner = el.querySelector('.plus');
+        el.dataset.target = num; el.dataset.suffix = '';
+        el.dataset.hasPlusSpan = hasPlusInner ? 'true' : 'false';
+        if (hasPlusInner) { el.innerHTML = '0<span class="plus">+</span>'; }
+        else { el.textContent = '0'; }
+        statObsSpecial.observe(el);
+      }
+    });
+
+    // Parallax on city float images
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      document.querySelectorAll('.city-float').forEach((el, i) => {
+        const speed = 0.04 + i * 0.015;
+        el.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    }, { passive: true });
+
+    // City card tilt effect
+    document.querySelectorAll('.city-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top)  / rect.height - 0.5;
+        card.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.transition = 'transform 0.5s ease';
+        setTimeout(() => card.style.transition = '', 500);
+      });
+    });
+  </script>
+</body>
+</html>
