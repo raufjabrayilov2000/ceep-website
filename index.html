@@ -87,8 +87,25 @@
     .banner-cta:hover { background: var(--terracotta-d); transform: translateY(-1px); }
     .banner-dismiss { background: none; border: none; cursor: none; color: rgba(255,255,255,.28); font-size: .85rem; line-height: 1; padding: .3rem; flex-shrink: 0; transition: color .2s; }
     .banner-dismiss:hover { color: rgba(255,255,255,.65); }
+    .banner-prof-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
     @media(max-width:960px){ .banner-prof, .banner-vdivider { display: none; } }
-    @media(max-width:640px){ .banner-inner { padding: .55rem 1.2rem; gap: .8rem; } .banner-event { flex-wrap: wrap; gap: .3rem; } .banner-sep { display: none; } }
+    @media(max-width:640px){
+      .banner-inner { padding: .5rem 1rem; gap: .5rem; flex-wrap: wrap; }
+      .banner-left { gap: .35rem; }
+      .banner-event { flex-wrap: wrap; gap: .2rem; align-items: flex-start; }
+      .banner-sep { display: none; }
+      .banner-event-title { font-size: .78rem; line-height: 1.3; }
+      .banner-dates { font-size: .72rem; }
+      .banner-pill { font-size: .55rem; padding: .18rem .55rem; }
+      .banner-cta { font-size: .62rem; padding: .38rem .85rem; letter-spacing: .06em; }
+    }
+    @media(max-width:420px){
+      .banner-inner { flex-direction: column; align-items: stretch; gap: .4rem; padding: .6rem .9rem; }
+      .banner-left { flex-wrap: wrap; gap: .3rem; }
+      .banner-right { display: flex; justify-content: space-between; align-items: center; }
+      .banner-event-title { font-size: .75rem; }
+      .banner-dates { font-size: .7rem; }
+    }
 
     /* Navigation */
     nav { position: fixed; top: var(--banner-h,0px); left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2.5rem; transition: background .4s ease, backdrop-filter .4s ease, border-bottom .4s ease; }
@@ -451,7 +468,7 @@
         </div>
         <div class="banner-vdivider"></div>
         <div class="banner-prof">
-          <div class="banner-prof-avatar">WS</div>
+          <div class="banner-prof-avatar" style="padding:0; overflow:hidden;"><img src="images/wadim.jpeg" alt="Prof. Wadim Strielkowski" /></div>
           <div class="banner-prof-text">
             <span class="banner-prof-name">Prof. Wadim Strielkowski</span>
             <span class="banner-prof-creds">Prague Business School · Former Visiting Prof at UC Berkeley · 220+ Web of Science Publications</span>
@@ -923,19 +940,19 @@
             <div class="memory-caption-city">🇨🇿 Prague</div>
           </div>
         </div>
-        <!-- 7: Budapest Parliament — Unsplash European city filler -->
+        <!-- 7: CEEP group photo outside modern building -->
         <div class="memory-item">
-          <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=600&q=80" alt="Budapest Parliament" loading="lazy" />
+          <img src="images/memory7.jpeg" alt="Group photo of CEEP students outside a modern building" loading="lazy" />
           <div class="memory-caption">
-            <div class="memory-caption-text">Pearl of the Danube</div>
-            <div class="memory-caption-city">🇭🇺 Budapest</div>
+            <div class="memory-caption-text">Together in Europe</div>
+            <div class="memory-caption-city">📸 CEEP Students</div>
           </div>
         </div>
-        <!-- 8: Prague Charles Bridge — Unsplash European city filler -->
+        <!-- 8: Selfie at Prague restaurant dinner -->
         <div class="memory-item">
-          <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=600&q=80" alt="Prague Charles Bridge" loading="lazy" />
+          <img src="images/memory8.jpeg" alt="Selfie at Prague restaurant dinner with CEEP students" loading="lazy" />
           <div class="memory-caption">
-            <div class="memory-caption-text">Charles Bridge at dawn</div>
+            <div class="memory-caption-text">Dinner &amp; laughs</div>
             <div class="memory-caption-city">🇨🇿 Prague</div>
           </div>
         </div>
@@ -982,7 +999,7 @@
       <div class="team-group-label reveal">General Coordinator</div>
       <div class="team-card coordinator-card reveal">
         <div class="team-card-body">
-          <div class="team-avatar" style="background: linear-gradient(135deg, var(--eu-blue) 0%, #2255cc 100%);">SS</div>
+          <div class="team-avatar-photo" style="margin-bottom:0; width:72px; height:72px;"><img src="images/suleyman.jpeg" alt="Suleyman Suleymanli" /></div>
           <div>
             <div class="team-role">General Coordinator</div>
             <div class="team-name">Suleyman Suleymanli</div>
@@ -1005,7 +1022,7 @@
         </div>
         <div class="team-card academic-card reveal reveal-delay-2">
           <div class="team-card-body">
-            <div class="team-avatar" style="background: linear-gradient(135deg, #1F3B2F 0%, #2D5442 100%); width:56px; height:56px; font-size:1.3rem; margin-bottom:1rem;">AG</div>
+            <div class="team-avatar-photo" style="width:60px; height:60px; margin-bottom:1rem;"><img src="images/aysel.jpeg" alt="Aysel Guliyeva" /></div>
             <div class="team-role">Deputy Dean</div>
             <div class="team-name">Aysel Guliyeva</div>
             <div class="team-bio">Deputy Dean at International School of Economics (ISE) at UNEC. Bridges high-level academia with practical program design.</div>
@@ -1021,7 +1038,7 @@
         </div>
         <div class="team-card academic-card reveal reveal-delay-4">
           <div class="team-card-body">
-            <div class="team-avatar" style="background: linear-gradient(135deg, var(--burgundy) 0%, #a0284e 100%); width:56px; height:56px; font-size:1.3rem; margin-bottom:1rem;">HA</div>
+            <div class="team-avatar-photo" style="width:60px; height:60px; margin-bottom:1rem;"><img src="images/hikmat.jpeg" alt="Hikmat Abdulov" /></div>
             <div class="team-role">Lecturer at UNEC</div>
             <div class="team-name">Hikmat Abdulov</div>
             <div class="team-bio">Contributes deep subject expertise and practical insight to every CEEP educational module and workshop.</div>
