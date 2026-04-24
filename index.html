@@ -313,7 +313,7 @@
     .memories-desc { max-width: 400px; font-size: .95rem; line-height: 1.7; color: var(--muted); }
     .memories-grid { display: grid; grid-template-columns: repeat(4,1fr); grid-auto-rows: 220px; gap: 1rem; }
     .memory-item { position: relative; border-radius: 8px; overflow: hidden; cursor: none; }
-    .memory-item img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.75) sepia(.1); transition: transform .5s ease, filter .5s ease; display: block; }
+    .memory-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.75) sepia(.1); transition: transform .5s ease, filter .5s ease; display: block; }
     .memory-item:hover img { transform: scale(1.06); filter: saturate(.92) sepia(.02); }
     .memory-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--terracotta); z-index: 2; }
     .memory-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,18,8,.72) 0%, transparent 55%); opacity: 0; transition: opacity .4s ease; z-index: 1; }
@@ -925,7 +925,7 @@
       <div class="memories-grid reveal">
         <!-- 1: CEEP Summer Program — certificates at NODE5 — tall (spans 2 rows) -->
         <div class="memory-item mem-tall">
-          <img src="images/memory1.jpeg" alt="CEEP Summer Program — group with certificates at NODE5" loading="lazy" style="object-fit:cover;" />
+          <img src="images/memory1.jpeg" alt="CEEP Summer Program — group with certificates at NODE5" loading="lazy" />
           <div class="memory-caption">
             <div class="memory-caption-text">Summer School graduation</div>
             <div class="memory-caption-city">🏆 NODE5 · Prague</div>
@@ -933,7 +933,7 @@
         </div>
         <!-- 2: CEEP students at Budapest Fisherman's Bastion -->
         <div class="memory-item">
-          <img src="images/memory2.jpeg" alt="CEEP students at Fisherman's Bastion, Budapest" loading="lazy" style="object-fit:cover;" />
+          <img src="images/memory2.jpeg" alt="CEEP students at Fisherman's Bastion, Budapest" loading="lazy" />
           <div class="memory-caption">
             <div class="memory-caption-text">Above the Danube</div>
             <div class="memory-caption-city">🇭🇺 Budapest</div>
@@ -941,7 +941,7 @@
         </div>
         <!-- 3: CEEP students in seminar room -->
         <div class="memory-item">
-          <img src="images/memory3.jpeg" alt="CEEP seminar lecture room" loading="lazy" style="object-fit:cover;" />
+          <img src="images/memory3.jpeg" alt="CEEP seminar lecture room" loading="lazy" />
           <div class="memory-caption">
             <div class="memory-caption-text">Knowledge in session</div>
             <div class="memory-caption-city">📚 Academic Seminar</div>
@@ -949,7 +949,7 @@
         </div>
         <!-- 4: CEEP Spring Program — certificates at NODE5 -->
         <div class="memory-item">
-          <img src="images/memory4.jpeg" alt="CEEP Spring Program — group with certificates at NODE5" loading="lazy" style="object-fit:cover;" />
+          <img src="images/memory4.jpeg" alt="CEEP Spring Program — group with certificates at NODE5" loading="lazy" />
           <div class="memory-caption">
             <div class="memory-caption-text">Spring Program certificates</div>
             <div class="memory-caption-city">🏆 NODE5 · Prague</div>
@@ -957,7 +957,7 @@
         </div>
         <!-- 5: CEEP group photo at NODE5 — wide (spans 2 cols) -->
         <div class="memory-item mem-wide">
-          <img src="images/memory5.jpeg" alt="CEEP group certificate photo at NODE5 — wider angle" loading="lazy" style="object-fit:cover;" />
+          <img src="images/memory5.jpeg" alt="CEEP group certificate photo at NODE5 — wider angle" loading="lazy" />
           <div class="memory-caption">
             <div class="memory-caption-text">The whole cohort</div>
             <div class="memory-caption-city">🏆 NODE5 · Prague</div>
