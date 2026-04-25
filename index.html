@@ -488,7 +488,20 @@
 
     /* Advisory badge — floats beside the circular photo */
     .academic-card .team-card-body { position: relative; }
-    .academic-photo-wrap { position: relative; display: inline-block; margin-bottom: 1rem; }
+    .academic-photo-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: fit-content;
+      height: 60px;
+      margin-bottom: 1rem;
+    }
+    .academic-photo-wrap .team-avatar-photo {
+      width: 60px !important;
+      height: 60px !important;
+      margin-bottom: 0 !important;
+      flex-shrink: 0;
+    }
     .advisory-badge {
       position: absolute;
       top: 50%;
@@ -1331,10 +1344,10 @@
         <div class="team-card academic-card reveal reveal-delay-2">
           <div class="team-card-body">
             <div class="academic-photo-wrap">
-              <div class="team-avatar-photo" style="width:60px; height:60px; margin-bottom:0;"><img src="images/aysel.jpeg" alt="Aysel Guliyeva" /></div>
+              <div class="team-avatar-photo"><img src="images/aysel.jpeg" alt="Aysel Guliyeva" /></div>
               <div class="advisory-badge"><span class="advisory-label">Advisory Board Member</span></div>
             </div>
-            <div class="team-role" style="margin-top:1rem;">Deputy Dean</div>
+            <div class="team-role">Deputy Dean</div>
             <div class="team-name">Aysel Guliyeva</div>
             <div class="team-bio">Deputy Dean at International School of Economics (ISE) at UNEC. Bridges high-level academia with practical program design.</div>
           </div>
@@ -1353,10 +1366,10 @@
         <div class="team-card academic-card reveal reveal-delay-4">
           <div class="team-card-body">
             <div class="academic-photo-wrap">
-              <div class="team-avatar-photo" style="width:60px; height:60px; margin-bottom:0;"><img src="images/hikmat.jpeg" alt="Hikmat Abdulov" /></div>
+              <div class="team-avatar-photo"><img src="images/hikmat.jpeg" alt="Hikmat Abdulov" /></div>
               <div class="advisory-badge"><span class="advisory-label">Academic Advisor</span></div>
             </div>
-            <div class="team-role" style="margin-top:1rem;">Lecturer at UNEC</div>
+            <div class="team-role">Lecturer at UNEC</div>
             <div class="team-name">Hikmat Abdulov</div>
             <div class="team-bio">Contributes deep subject expertise and practical insight to every CEEP educational module and workshop.</div>
           </div>
