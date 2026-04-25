@@ -435,59 +435,56 @@
     .tl-download-btn { display: inline-flex; align-items: center; gap: .35rem; background: rgba(122,30,58,.07); border: 1px solid rgba(122,30,58,.28); color: var(--burgundy); font-family: var(--font-body); font-size: .71rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .32rem .85rem; border-radius: 3px; text-decoration: none; transition: background .2s, color .2s, transform .2s; margin-top: .7rem; cursor: none; }
     .tl-download-btn:hover { background: var(--burgundy); color: white; transform: translateY(-1px); }
 
-    /* ─── Compact Programs Grid ─────────────────────────────────────── */
+    /* ─── Accordion Programs ─────────────────────────────────────────── */
     .past-section-header { margin-bottom: 2rem !important; }
-    .programs-compact-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: .65rem; }
-    @media(max-width:640px){ .programs-compact-grid { grid-template-columns: 1fr; } }
-
-    .pc-card { overflow: hidden; background: linear-gradient(145deg, var(--parchment) 0%, rgba(234,217,187,.55) 100%); border: 1px solid var(--stone); border-left: 3px solid transparent; border-radius: 6px; padding: .85rem 1.1rem; position: relative; transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease, background .28s ease; }
-    .pc-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(181,118,46,.18), 0 4px 12px rgba(28,18,8,.08); }
-
-    .pc-march   { border-left-color: var(--eu-blue); }
-    .pc-summer  { border-left-color: var(--terracotta); }
-    .pc-newyear { border-left-color: var(--bronze); }
-    .pc-autumn  { border-left-color: var(--burgundy); }
-
-    .pc-march:hover   { border-color: rgba(0,51,153,.28);   border-left-color: var(--eu-blue);   background: linear-gradient(145deg, #F5EFE8 0%, rgba(220,228,248,.3) 100%); }
-    .pc-summer:hover  { border-color: rgba(192,82,40,.28);  border-left-color: var(--terracotta); background: linear-gradient(145deg, #FFF3EC 0%, rgba(245,220,205,.4) 100%); }
-    .pc-newyear:hover { border-color: rgba(181,118,46,.28); border-left-color: var(--bronze);     background: linear-gradient(145deg, #FFF8EE 0%, rgba(248,228,185,.4) 100%); }
-    .pc-autumn:hover  { border-color: rgba(122,30,58,.28);  border-left-color: var(--burgundy);   background: linear-gradient(145deg, #FFF0F2 0%, rgba(238,210,215,.3) 100%); }
-
-    .pc-meta { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .38rem; }
-    .pc-date { font-family: var(--font-serif); font-style: italic; font-size: .8rem; color: var(--muted); white-space: nowrap; }
-    .pc-badge { font-size: .56rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; border-radius: 100px; padding: .14rem .55rem; white-space: nowrap; }
-    .pc-march .pc-badge   { color: var(--eu-blue);   background: rgba(0,51,153,.06);   border: 1px solid rgba(0,51,153,.14); }
-    .pc-summer .pc-badge  { color: var(--terracotta); background: rgba(192,82,40,.06);  border: 1px solid rgba(192,82,40,.14); }
-    .pc-newyear .pc-badge { color: var(--bronze);    background: rgba(181,118,46,.06);  border: 1px solid rgba(181,118,46,.18); }
-    .pc-autumn .pc-badge  { color: var(--burgundy);  background: rgba(122,30,58,.06);   border: 1px solid rgba(122,30,58,.14); }
-
-    .pc-title { font-family: var(--font-display); font-size: 1.0rem; text-transform: uppercase; letter-spacing: .04em; color: var(--ink); line-height: 1; margin-bottom: .4rem; }
-    .pc-cities { display: flex; flex-wrap: wrap; gap: .2rem; }
-    .pc-city { display: inline-flex; align-items: center; gap: .2rem; background: rgba(28,18,8,.04); border: 1px solid rgba(200,184,152,.7); border-radius: 100px; padding: .13rem .48rem; font-size: .67rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
-    .pc-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .35rem; margin-top: .45rem; padding-top: .38rem; border-top: 1px solid rgba(200,184,152,.5); }
-    .pc-partner { font-size: .62rem; color: var(--muted); display: flex; align-items: center; gap: .28rem; line-height: 1.4; }
-    .pc-partner strong { color: var(--ink); font-weight: 600; }
-    .pc-done-dot { width: 5px; height: 5px; border-radius: 50%; background: #22C55E; flex-shrink: 0; margin-top: 1px; }
-    .pc-download-btn { display: inline-flex; align-items: center; gap: .3rem; background: rgba(122,30,58,.07); border: 1px solid rgba(122,30,58,.28); color: var(--burgundy); font-family: var(--font-body); font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .7rem; border-radius: 3px; text-decoration: none; transition: background .18s, color .18s; cursor: none; white-space: nowrap; }
-    .pc-download-btn:hover { background: var(--burgundy); color: white; }
-
-    /* Warm thumbnail strip at top of compact cards */
-    .pc-thumb { margin: -.85rem -1.1rem .65rem; height: 46px; overflow: hidden; position: relative; flex-shrink: 0; }
-    .pc-thumb img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.6) sepia(.28) brightness(.78); transition: transform .55s ease, filter .45s ease; display: block; }
-    .pc-card:hover .pc-thumb img { transform: scale(1.1); filter: saturate(.82) sepia(.12) brightness(.86); }
-    .pc-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(28,18,8,.08) 0%, rgba(245,236,215,.62) 100%); pointer-events: none; }
-    .pc-thumb-icon { position: absolute; top: 5px; right: 8px; font-size: .72rem; z-index: 2; line-height: 1; opacity: .8; }
-
-    /* Professor mini-avatars on BME program cards */
-    .pc-prof-avatars { display: flex; align-items: center; gap: .4rem; margin-top: .32rem; padding-top: .28rem; border-top: 1px solid rgba(200,184,152,.4); flex-wrap: wrap; }
-    .pc-prof-label { font-size: .58rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-    .pc-prof-avatar-wrap { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; }
-    .pc-prof-item { display: flex; align-items: center; gap: .28rem; }
-    .pc-prof-img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; object-position: center top; border: 1.5px solid var(--stone2); flex-shrink: 0; background: var(--parchment2); transition: border-color .25s, transform .25s; }
-    .pc-prof-item:hover .pc-prof-img { border-color: var(--terracotta); transform: scale(1.1); }
-    .pc-prof-initial { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: .9rem; color: white; flex-shrink: 0; }
-    .pc-prof-name { font-size: .61rem; color: var(--ink); font-weight: 500; white-space: nowrap; }
-    .pc-prof-sep { color: var(--stone2); font-size: .65rem; line-height: 1; align-self: center; }
+    .accord-list { display: flex; flex-direction: column; gap: .45rem; }
+    .accord-item { background: var(--parchment); border: 1px solid var(--stone); border-left: 3px solid transparent; border-radius: 8px; overflow: hidden; transition: border-color .3s, box-shadow .3s; }
+    .accord-march   { border-left-color: var(--eu-blue); }
+    .accord-summer  { border-left-color: var(--terracotta); }
+    .accord-newyear { border-left-color: var(--bronze); }
+    .accord-autumn  { border-left-color: var(--burgundy); }
+    .accord-item.open { box-shadow: 0 8px 28px rgba(28,18,8,.12); }
+    .accord-march.open   { border-color: rgba(0,51,153,.28); }
+    .accord-summer.open  { border-color: rgba(192,82,40,.28); }
+    .accord-newyear.open { border-color: rgba(181,118,46,.28); }
+    .accord-autumn.open  { border-color: rgba(122,30,58,.28); }
+    .accord-header { display: flex; align-items: center; justify-content: space-between; padding: .95rem 1.3rem; cursor: none; user-select: none; gap: 1rem; transition: background .2s; }
+    .accord-item:hover .accord-header { background: rgba(28,18,8,.022); }
+    .accord-header-left { display: flex; align-items: center; gap: .85rem; flex-wrap: wrap; }
+    .accord-emoji { font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
+    .accord-name { font-family: var(--font-display); font-size: 1.12rem; text-transform: uppercase; letter-spacing: .05em; color: var(--ink); line-height: 1; }
+    .accord-season-pill { font-size: .59rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; border-radius: 100px; padding: .18rem .58rem; white-space: nowrap; }
+    .accord-march .accord-season-pill   { color: var(--eu-blue);   background: rgba(0,51,153,.06);   border: 1px solid rgba(0,51,153,.14); }
+    .accord-summer .accord-season-pill  { color: var(--terracotta); background: rgba(192,82,40,.06);  border: 1px solid rgba(192,82,40,.14); }
+    .accord-newyear .accord-season-pill { color: var(--bronze);    background: rgba(181,118,46,.06);  border: 1px solid rgba(181,118,46,.18); }
+    .accord-autumn .accord-season-pill  { color: var(--burgundy);  background: rgba(122,30,58,.06);   border: 1px solid rgba(122,30,58,.14); }
+    .accord-toggle { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--stone2); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 300; line-height: 1; color: var(--muted); flex-shrink: 0; transition: transform .4s cubic-bezier(.23,1,.32,1), background .25s, border-color .25s, color .25s; }
+    .accord-item.open .accord-toggle { transform: rotate(45deg); background: var(--terracotta); border-color: var(--terracotta); color: white; }
+    .accord-body { max-height: 0; overflow: hidden; transition: max-height .55s cubic-bezier(.23,1,.32,1); }
+    .accord-item.open .accord-body { max-height: 700px; }
+    .accord-body-inner { padding: 0 1.3rem 1.3rem; display: grid; grid-template-columns: 210px 1fr; gap: 1.3rem; }
+    @media(max-width:580px){ .accord-body-inner { grid-template-columns: 1fr; } }
+    .accord-photo { border-radius: 6px; overflow: hidden; height: 158px; position: relative; }
+    .accord-photo::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--terracotta); z-index: 2; opacity: .75; }
+    .accord-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) sepia(.15) brightness(.8); transition: transform .6s ease, filter .5s ease; display: block; }
+    .accord-item.open .accord-photo img { transform: scale(1.04); filter: saturate(.88) sepia(.08) brightness(.85); }
+    .accord-details { display: flex; flex-direction: column; gap: .7rem; justify-content: center; }
+    .accord-cities-label { font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+    .accord-cities { display: flex; flex-wrap: wrap; gap: .32rem; }
+    .accord-city { display: inline-flex; align-items: center; gap: .3rem; background: rgba(28,18,8,.04); border: 1px solid var(--stone); border-radius: 100px; padding: .3rem .72rem; font-size: .78rem; font-weight: 500; color: var(--ink); }
+    .accord-organizer { font-size: .78rem; color: var(--muted); line-height: 1.55; padding-top: .6rem; border-top: 1px solid var(--stone); display: flex; align-items: flex-start; gap: .4rem; }
+    .accord-organizer strong { color: var(--ink); font-weight: 600; }
+    .accord-done-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; flex-shrink: 0; margin-top: .28rem; }
+    .accord-profs { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; padding-top: .55rem; border-top: 1px solid var(--stone); }
+    .accord-prof-label { font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .accord-prof-item { display: flex; align-items: center; gap: .3rem; }
+    .accord-prof-img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; object-position: center top; border: 1.5px solid var(--stone2); flex-shrink: 0; transition: border-color .25s; }
+    .accord-prof-item:hover .accord-prof-img { border-color: var(--terracotta); }
+    .accord-prof-initial { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: .85rem; color: white; flex-shrink: 0; }
+    .accord-prof-name { font-size: .72rem; color: var(--ink); font-weight: 500; white-space: nowrap; }
+    .accord-prof-sep { color: var(--stone2); font-size: .65rem; line-height: 1; }
+    .accord-download-btn { display: inline-flex; align-items: center; gap: .35rem; background: rgba(122,30,58,.07); border: 1px solid rgba(122,30,58,.28); color: var(--burgundy); font-family: var(--font-body); font-size: .71rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem .88rem; border-radius: 3px; text-decoration: none; transition: background .2s, color .2s; cursor: none; width: fit-content; }
+    .accord-download-btn:hover { background: var(--burgundy); color: white; }
 
     /* Utilities */
     .container { max-width: 1200px; margin: 0 auto; }
@@ -733,227 +730,390 @@
         <p class="past-desc reveal reveal-delay-2">From Budapest to Barcelona — CEEP has brought hundreds of students across 14+ European cities since 2019. Every edition a new chapter, every cohort a new story.</p>
       </div>
 
-      <div class="programs-compact-grid">
+      <div class="accord-list">
 
         <!-- 1 · March 2022 -->
-        <div class="pc-card pc-march reveal reveal-delay-1">
-          <div class="pc-thumb"><img src="https://images.unsplash.com/photo-1570654639102-bdd95efeca7a?w=400&q=65" alt="Budapest" loading="lazy" /><span class="pc-thumb-icon">🗺</span></div>
-          <div class="pc-meta">
-            <span class="pc-date">🌸 March 2022</span>
-            <span class="pc-badge">Spring</span>
+        <div class="accord-item accord-march reveal reveal-delay-1">
+          <div class="accord-header" role="button" tabindex="0">
+            <div class="accord-header-left">
+              <span class="accord-emoji">🌸</span>
+              <span class="accord-name">March 2022</span>
+              <span class="accord-season-pill">Spring</span>
+            </div>
+            <span class="accord-toggle">+</span>
           </div>
-          <div class="pc-title">Spring Program</div>
-          <div class="pc-cities">
-            <span class="pc-city">🇭🇺 Budapest</span>
-            <span class="pc-city">🇦🇹 Vienna</span>
-            <span class="pc-city">🇫🇷 Paris</span>
-          </div>
-          <div class="pc-footer">
-            <div class="pc-partner"><span class="pc-done-dot"></span>Organized by <strong>Budapest University of Technology and Economics</strong></div>
-          </div>
-          <div class="pc-prof-avatars">
-            <span class="pc-prof-label">Lecturers</span>
-            <div class="pc-prof-avatar-wrap">
-              <div class="pc-prof-item">
-                <img class="pc-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/Dr-Bethlendi-Anras.jpg" alt="Dr. Bethlendi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="pc-prof-initial" style="display:none;background:var(--eu-blue)">B</div>
-                <span class="pc-prof-name">Dr. Bethlendi</span>
+          <div class="accord-body">
+            <div class="accord-body-inner">
+              <div class="accord-photo">
+                <img src="https://images.unsplash.com/photo-1570654639102-bdd95efeca7a?w=600&q=75" alt="Budapest" loading="lazy" />
               </div>
-              <span class="pc-prof-sep">·</span>
-              <div class="pc-prof-item">
-                <img class="pc-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/szalmane-dr-csete-maria-uj.png" alt="Dr. Csete" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="pc-prof-initial" style="display:none;background:var(--burgundy)">C</div>
-                <span class="pc-prof-name">Dr. Csete</span>
+              <div class="accord-details">
+                <div>
+                  <div class="accord-cities-label">Destinations</div>
+                  <div class="accord-cities">
+                    <span class="accord-city">🇭🇺 Budapest</span>
+                    <span class="accord-city">🇦🇹 Vienna</span>
+                    <span class="accord-city">🇫🇷 Paris</span>
+                  </div>
+                </div>
+                <div class="accord-organizer">
+                  <span class="accord-done-dot"></span>
+                  <span>Organized by <strong>Budapest University of Technology and Economics (BME)</strong></span>
+                </div>
+                <div class="accord-profs">
+                  <span class="accord-prof-label">Lecturers</span>
+                  <div class="accord-prof-item">
+                    <img class="accord-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/Dr-Bethlendi-Anras.jpg" alt="Dr. Bethlendi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="accord-prof-initial" style="display:none;background:var(--eu-blue)">B</div>
+                    <span class="accord-prof-name">Dr. Bethlendi</span>
+                  </div>
+                  <span class="accord-prof-sep">·</span>
+                  <div class="accord-prof-item">
+                    <img class="accord-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/szalmane-dr-csete-maria-uj.png" alt="Dr. Csete" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="accord-prof-initial" style="display:none;background:var(--burgundy)">C</div>
+                    <span class="accord-prof-name">Dr. Csete</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- 2 · Summer 2022 -->
-        <div class="pc-card pc-summer reveal reveal-delay-2">
-          <div class="pc-thumb"><img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=400&q=65" alt="Prague" loading="lazy" /><span class="pc-thumb-icon">✈</span></div>
-          <div class="pc-meta">
-            <span class="pc-date">☀️ Summer 2022</span>
-            <span class="pc-badge">Summer School</span>
+        <div class="accord-item accord-summer reveal reveal-delay-2">
+          <div class="accord-header" role="button" tabindex="0">
+            <div class="accord-header-left">
+              <span class="accord-emoji">☀️</span>
+              <span class="accord-name">Summer 2022</span>
+              <span class="accord-season-pill">Summer School</span>
+            </div>
+            <span class="accord-toggle">+</span>
           </div>
-          <div class="pc-title">Summer School</div>
-          <div class="pc-cities">
-            <span class="pc-city">🇨🇿 Prague</span>
-            <span class="pc-city">🇩🇪 Berlin</span>
-            <span class="pc-city">🇦🇹 Vienna</span>
+          <div class="accord-body">
+            <div class="accord-body-inner">
+              <div class="accord-photo">
+                <img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=600&q=75" alt="Prague" loading="lazy" />
+              </div>
+              <div class="accord-details">
+                <div>
+                  <div class="accord-cities-label">Destinations</div>
+                  <div class="accord-cities">
+                    <span class="accord-city">🇨🇿 Prague</span>
+                    <span class="accord-city">🇩🇪 Berlin</span>
+                    <span class="accord-city">🇦🇹 Vienna</span>
+                  </div>
+                </div>
+                <div class="accord-organizer">
+                  <span class="accord-done-dot"></span>
+                  <span>Organized by <strong>Prague Business School</strong></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- 3 · March 2023 -->
-        <div class="pc-card pc-march reveal reveal-delay-1">
-          <div class="pc-thumb"><img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=400&q=65" alt="Vienna" loading="lazy" /><span class="pc-thumb-icon">🗺</span></div>
-          <div class="pc-meta">
-            <span class="pc-date">🌸 March 2023</span>
-            <span class="pc-badge">Spring</span>
+        <div class="accord-item accord-march reveal reveal-delay-1">
+          <div class="accord-header" role="button" tabindex="0">
+            <div class="accord-header-left">
+              <span class="accord-emoji">🌸</span>
+              <span class="accord-name">March 2023</span>
+              <span class="accord-season-pill">Spring</span>
+            </div>
+            <span class="accord-toggle">+</span>
           </div>
-          <div class="pc-title">Spring Program</div>
-          <div class="pc-cities">
-            <span class="pc-city">🇭🇺 Budapest</span>
-            <span class="pc-city">🇦🇹 Vienna</span>
-            <span class="pc-city">🇨🇿 Prague</span>
-          </div>
-          <div class="pc-footer">
-            <div class="pc-partner"><span class="pc-done-dot"></span>Organized by <strong>Budapest University of Technology and Economics</strong></div>
-          </div>
-          <div class="pc-prof-avatars">
-            <span class="pc-prof-label">Lecturers</span>
-            <div class="pc-prof-avatar-wrap">
-              <div class="pc-prof-item">
-                <img class="pc-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/Dr-Bethlendi-Anras.jpg" alt="Dr. Bethlendi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="pc-prof-initial" style="display:none;background:var(--eu-blue)">B</div>
-                <span class="pc-prof-name">Dr. Bethlendi</span>
+          <div class="accord-body">
+            <div class="accord-body-inner">
+              <div class="accord-photo">
+                <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=600&q=75" alt="Vienna" loading="lazy" />
               </div>
-              <span class="pc-prof-sep">·</span>
-              <div class="pc-prof-item">
-                <img class="pc-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/szalmane-dr-csete-maria-uj.png" alt="Dr. Csete" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="pc-prof-initial" style="display:none;background:var(--burgundy)">C</div>
-                <span class="pc-prof-name">Dr. Csete</span>
-              </div>
-              <span class="pc-prof-sep">·</span>
-              <div class="pc-prof-item">
-                <img class="pc-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/Logo-Emma.jpg" alt="Dr. Lógó" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="pc-prof-initial" style="display:none;background:var(--bronze)">L</div>
-                <span class="pc-prof-name">Dr. Lógó</span>
+              <div class="accord-details">
+                <div>
+                  <div class="accord-cities-label">Destinations</div>
+                  <div class="accord-cities">
+                    <span class="accord-city">🇭🇺 Budapest</span>
+                    <span class="accord-city">🇦🇹 Vienna</span>
+                    <span class="accord-city">🇨🇿 Prague</span>
+                  </div>
+                </div>
+                <div class="accord-organizer">
+                  <span class="accord-done-dot"></span>
+                  <span>Organized by <strong>Budapest University of Technology and Economics (BME)</strong></span>
+                </div>
+                <div class="accord-profs">
+                  <span class="accord-prof-label">Lecturers</span>
+                  <div class="accord-prof-item">
+                    <img class="accord-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/Dr-Bethlendi-Anras.jpg" alt="Dr. Bethlendi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="accord-prof-initial" style="display:none;background:var(--eu-blue)">B</div>
+                    <span class="accord-prof-name">Dr. Bethlendi</span>
+                  </div>
+                  <span class="accord-prof-sep">·</span>
+                  <div class="accord-prof-item">
+                    <img class="accord-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/szalmane-dr-csete-maria-uj.png" alt="Dr. Csete" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="accord-prof-initial" style="display:none;background:var(--burgundy)">C</div>
+                    <span class="accord-prof-name">Dr. Csete</span>
+                  </div>
+                  <span class="accord-prof-sep">·</span>
+                  <div class="accord-prof-item">
+                    <img class="accord-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/Logo-Emma.jpg" alt="Dr. Lógó" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="accord-prof-initial" style="display:none;background:var(--bronze)">L</div>
+                    <span class="accord-prof-name">Dr. Lógó</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- 4 · Summer 2023 -->
-        <div class="pc-card pc-summer reveal reveal-delay-2">
-          <div class="pc-thumb"><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=65" alt="Venice" loading="lazy" /><span class="pc-thumb-icon">✈</span></div>
-          <div class="pc-meta">
-            <span class="pc-date">☀️ Summer 2023</span>
-            <span class="pc-badge">Summer School</span>
+        <div class="accord-item accord-summer reveal reveal-delay-2">
+          <div class="accord-header" role="button" tabindex="0">
+            <div class="accord-header-left">
+              <span class="accord-emoji">☀️</span>
+              <span class="accord-name">Summer 2023</span>
+              <span class="accord-season-pill">Summer School</span>
+            </div>
+            <span class="accord-toggle">+</span>
           </div>
-          <div class="pc-title">Summer School</div>
-          <div class="pc-cities">
-            <span class="pc-city">🇨🇿 Prague</span>
-            <span class="pc-city">🇮🇹 Venezia</span>
-            <span class="pc-city">🇦🇹 Vienna</span>
-            <span class="pc-city">🇭🇺 Budapest</span>
+          <div class="accord-body">
+            <div class="accord-body-inner">
+              <div class="accord-photo">
+                <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=75" alt="Venice" loading="lazy" />
+              </div>
+              <div class="accord-details">
+                <div>
+                  <div class="accord-cities-label">Destinations</div>
+                  <div class="accord-cities">
+                    <span class="accord-city">🇨🇿 Prague</span>
+                    <span class="accord-city">🇮🇹 Venezia</span>
+                    <span class="accord-city">🇦🇹 Vienna</span>
+                    <span class="accord-city">🇭🇺 Budapest</span>
+                  </div>
+                </div>
+                <div class="accord-organizer">
+                  <span class="accord-done-dot"></span>
+                  <span>Organized by <strong>Prague Business School</strong></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- 5 · New Year 2023 -->
-        <div class="pc-card pc-newyear reveal reveal-delay-3">
-          <div class="pc-thumb"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=65" alt="Paris" loading="lazy" /><span class="pc-thumb-icon">✨</span></div>
-          <div class="pc-meta">
-            <span class="pc-date">🎆 New Year 2023</span>
-            <span class="pc-badge">Special Edition</span>
+        <div class="accord-item accord-newyear reveal reveal-delay-3">
+          <div class="accord-header" role="button" tabindex="0">
+            <div class="accord-header-left">
+              <span class="accord-emoji">❄️</span>
+              <span class="accord-name">New Year 2023</span>
+              <span class="accord-season-pill">Special Edition</span>
+            </div>
+            <span class="accord-toggle">+</span>
           </div>
-          <div class="pc-title">New Year Edition</div>
-          <div class="pc-cities">
-            <span class="pc-city">🇨🇿 Prague</span>
-            <span class="pc-city">🇩🇪 Frankfurt</span>
-            <span class="pc-city">🇧🇪 Brussels</span>
-            <span class="pc-city">🇫🇷 Paris</span>
+          <div class="accord-body">
+            <div class="accord-body-inner">
+              <div class="accord-photo">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=75" alt="Paris" loading="lazy" />
+              </div>
+              <div class="accord-details">
+                <div>
+                  <div class="accord-cities-label">Destinations</div>
+                  <div class="accord-cities">
+                    <span class="accord-city">🇨🇿 Prague</span>
+                    <span class="accord-city">🇩🇪 Frankfurt</span>
+                    <span class="accord-city">🇧🇪 Brussels</span>
+                    <span class="accord-city">🇫🇷 Paris</span>
+                  </div>
+                </div>
+                <div class="accord-organizer">
+                  <span class="accord-done-dot"></span>
+                  <span>Organized by <strong>Prague Business School</strong></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- 6 · Summer 2024 -->
-        <div class="pc-card pc-summer reveal reveal-delay-1">
-          <div class="pc-thumb"><img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=400&q=65" alt="Amsterdam" loading="lazy" /><span class="pc-thumb-icon">✈</span></div>
-          <div class="pc-meta">
-            <span class="pc-date">☀️ Summer 2024</span>
-            <span class="pc-badge">Summer School</span>
+        <div class="accord-item accord-summer reveal reveal-delay-1">
+          <div class="accord-header" role="button" tabindex="0">
+            <div class="accord-header-left">
+              <span class="accord-emoji">☀️</span>
+              <span class="accord-name">Summer 2024</span>
+              <span class="accord-season-pill">Summer School</span>
+            </div>
+            <span class="accord-toggle">+</span>
           </div>
-          <div class="pc-title">Summer School</div>
-          <div class="pc-cities">
-            <span class="pc-city">🇨🇿 Prague</span>
-            <span class="pc-city">🇦🇹 Vienna</span>
-            <span class="pc-city">🇩🇪 Frankfurt</span>
-            <span class="pc-city">🇳🇱 Amsterdam</span>
+          <div class="accord-body">
+            <div class="accord-body-inner">
+              <div class="accord-photo">
+                <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=600&q=75" alt="Amsterdam" loading="lazy" />
+              </div>
+              <div class="accord-details">
+                <div>
+                  <div class="accord-cities-label">Destinations</div>
+                  <div class="accord-cities">
+                    <span class="accord-city">🇨🇿 Prague</span>
+                    <span class="accord-city">🇦🇹 Vienna</span>
+                    <span class="accord-city">🇩🇪 Frankfurt</span>
+                    <span class="accord-city">🇳🇱 Amsterdam</span>
+                  </div>
+                </div>
+                <div class="accord-organizer">
+                  <span class="accord-done-dot"></span>
+                  <span>Organized by <strong>Prague Business School</strong></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- 7 · March 2025 -->
-        <div class="pc-card pc-march reveal reveal-delay-1">
-          <div class="pc-thumb"><img src="https://images.unsplash.com/photo-1559681675-3e42793c68a3?w=400&q=65" alt="Brussels" loading="lazy" /><span class="pc-thumb-icon">🗺</span></div>
-          <div class="pc-meta">
-            <span class="pc-date">🌸 March 2025</span>
-            <span class="pc-badge">Spring</span>
+        <div class="accord-item accord-march reveal reveal-delay-1">
+          <div class="accord-header" role="button" tabindex="0">
+            <div class="accord-header-left">
+              <span class="accord-emoji">🌸</span>
+              <span class="accord-name">March 2025</span>
+              <span class="accord-season-pill">Spring · Collaboration</span>
+            </div>
+            <span class="accord-toggle">+</span>
           </div>
-          <div class="pc-title">Spring Program</div>
-          <div class="pc-cities">
-            <span class="pc-city">🇧🇪 Brussels</span>
-            <span class="pc-city">🇳🇱 Amsterdam</span>
-            <span class="pc-city">🇫🇷 Paris</span>
-            <span class="pc-city">🇩🇪 Munich</span>
-            <span class="pc-city">🇨🇿 Prague</span>
-          </div>
-          <div class="pc-footer">
-            <div class="pc-partner"><span class="pc-done-dot"></span><strong>BME</strong> &amp; <strong>Prague Business School</strong> collaboration</div>
-          </div>
-          <div class="pc-prof-avatars">
-            <span class="pc-prof-label">Lecturers</span>
-            <div class="pc-prof-avatar-wrap">
-              <div class="pc-prof-item">
-                <img class="pc-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/Dr-Bethlendi-Anras.jpg" alt="Dr. Bethlendi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="pc-prof-initial" style="display:none;background:var(--eu-blue)">B</div>
-                <span class="pc-prof-name">Dr. Bethlendi</span>
+          <div class="accord-body">
+            <div class="accord-body-inner">
+              <div class="accord-photo">
+                <img src="https://images.unsplash.com/photo-1559681675-3e42793c68a3?w=600&q=75" alt="Brussels" loading="lazy" />
               </div>
-              <span class="pc-prof-sep">·</span>
-              <div class="pc-prof-item">
-                <img class="pc-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/szalmane-dr-csete-maria-uj.png" alt="Dr. Csete" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="pc-prof-initial" style="display:none;background:var(--burgundy)">C</div>
-                <span class="pc-prof-name">Dr. Csete</span>
-              </div>
-              <span class="pc-prof-sep">·</span>
-              <div class="pc-prof-item">
-                <img class="pc-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/Logo-Emma.jpg" alt="Dr. Lógó" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="pc-prof-initial" style="display:none;background:var(--bronze)">L</div>
-                <span class="pc-prof-name">Dr. Lógó</span>
+              <div class="accord-details">
+                <div>
+                  <div class="accord-cities-label">Destinations</div>
+                  <div class="accord-cities">
+                    <span class="accord-city">🇧🇪 Brussels</span>
+                    <span class="accord-city">🇳🇱 Amsterdam</span>
+                    <span class="accord-city">🇫🇷 Paris</span>
+                    <span class="accord-city">🇩🇪 Munich</span>
+                    <span class="accord-city">🇨🇿 Prague</span>
+                  </div>
+                </div>
+                <div class="accord-organizer">
+                  <span class="accord-done-dot"></span>
+                  <span>Joint collaboration — <strong>BME</strong> &amp; <strong>Prague Business School</strong></span>
+                </div>
+                <div class="accord-profs">
+                  <span class="accord-prof-label">Lecturers</span>
+                  <div class="accord-prof-item">
+                    <img class="accord-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/Dr-Bethlendi-Anras.jpg" alt="Dr. Bethlendi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="accord-prof-initial" style="display:none;background:var(--eu-blue)">B</div>
+                    <span class="accord-prof-name">Dr. Bethlendi</span>
+                  </div>
+                  <span class="accord-prof-sep">·</span>
+                  <div class="accord-prof-item">
+                    <img class="accord-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/szalmane-dr-csete-maria-uj.png" alt="Dr. Csete" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="accord-prof-initial" style="display:none;background:var(--burgundy)">C</div>
+                    <span class="accord-prof-name">Dr. Csete</span>
+                  </div>
+                  <span class="accord-prof-sep">·</span>
+                  <div class="accord-prof-item">
+                    <img class="accord-prof-img" src="https://www.gtk.bme.hu/wp-content/uploads/2020/09/Logo-Emma.jpg" alt="Dr. Lógó" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy" /><div class="accord-prof-initial" style="display:none;background:var(--bronze)">L</div>
+                    <span class="accord-prof-name">Dr. Lógó</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- 8 · Summer 2025 -->
-        <div class="pc-card pc-summer reveal reveal-delay-2">
-          <div class="pc-thumb"><img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=400&q=65" alt="Geneva" loading="lazy" /><span class="pc-thumb-icon">✈</span></div>
-          <div class="pc-meta">
-            <span class="pc-date">☀️ Summer 2025</span>
-            <span class="pc-badge">Summer School</span>
+        <div class="accord-item accord-summer reveal reveal-delay-2">
+          <div class="accord-header" role="button" tabindex="0">
+            <div class="accord-header-left">
+              <span class="accord-emoji">☀️</span>
+              <span class="accord-name">Summer 2025</span>
+              <span class="accord-season-pill">Summer School</span>
+            </div>
+            <span class="accord-toggle">+</span>
           </div>
-          <div class="pc-title">Summer School</div>
-          <div class="pc-cities">
-            <span class="pc-city">🇮🇹 Venezia</span>
-            <span class="pc-city">🇮🇹 Milano</span>
-            <span class="pc-city">🇨🇭 Zurich</span>
-            <span class="pc-city">🇨🇭 Geneva</span>
+          <div class="accord-body">
+            <div class="accord-body-inner">
+              <div class="accord-photo">
+                <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=75" alt="Venezia" loading="lazy" />
+              </div>
+              <div class="accord-details">
+                <div>
+                  <div class="accord-cities-label">Destinations</div>
+                  <div class="accord-cities">
+                    <span class="accord-city">🇮🇹 Venezia</span>
+                    <span class="accord-city">🇮🇹 Milano</span>
+                    <span class="accord-city">🇨🇭 Zurich</span>
+                    <span class="accord-city">🇨🇭 Geneva</span>
+                  </div>
+                </div>
+                <div class="accord-organizer">
+                  <span class="accord-done-dot"></span>
+                  <span>Organized by <strong>Prague Business School</strong></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- 9 · November 2025 -->
-        <div class="pc-card pc-autumn reveal reveal-delay-3">
-          <div class="pc-thumb"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&q=65" alt="Rome" loading="lazy" /><span class="pc-thumb-icon">🍂</span></div>
-          <div class="pc-meta">
-            <span class="pc-date">🍂 November 2025</span>
-            <span class="pc-badge">Autumn</span>
+        <div class="accord-item accord-autumn reveal reveal-delay-3">
+          <div class="accord-header" role="button" tabindex="0">
+            <div class="accord-header-left">
+              <span class="accord-emoji">🍂</span>
+              <span class="accord-name">November 2025</span>
+              <span class="accord-season-pill">Autumn</span>
+            </div>
+            <span class="accord-toggle">+</span>
           </div>
-          <div class="pc-title">Autumn Program</div>
-          <div class="pc-cities">
-            <span class="pc-city">🇭🇺 Budapest</span>
-            <span class="pc-city">🇮🇹 Venezia</span>
-            <span class="pc-city">🇮🇹 Milano</span>
-            <span class="pc-city">🇮🇹 Roma</span>
-          </div>
-          <div class="pc-footer">
-            <a href="docs/agenda-november-2025.pdf" target="_blank" rel="noopener" class="pc-download-btn">↓ Download Agenda</a>
+          <div class="accord-body">
+            <div class="accord-body-inner">
+              <div class="accord-photo">
+                <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=75" alt="Rome" loading="lazy" />
+              </div>
+              <div class="accord-details">
+                <div>
+                  <div class="accord-cities-label">Destinations</div>
+                  <div class="accord-cities">
+                    <span class="accord-city">🇭🇺 Budapest</span>
+                    <span class="accord-city">🇮🇹 Venezia</span>
+                    <span class="accord-city">🇮🇹 Milano</span>
+                    <span class="accord-city">🇮🇹 Roma</span>
+                  </div>
+                </div>
+                <div class="accord-organizer">
+                  <span class="accord-done-dot"></span>
+                  <span>Organized by <strong>Prague Business School</strong></span>
+                </div>
+                <a href="docs/agenda-november-2025.pdf" target="_blank" rel="noopener" class="accord-download-btn">↓ Download Agenda</a>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- 10 · March 2026 -->
-        <div class="pc-card pc-march reveal reveal-delay-1">
-          <div class="pc-thumb"><img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=400&q=65" alt="Prague" loading="lazy" /><span class="pc-thumb-icon">🗺</span></div>
-          <div class="pc-meta">
-            <span class="pc-date">🌸 March 2026</span>
-            <span class="pc-badge">Spring</span>
+        <div class="accord-item accord-march reveal reveal-delay-1">
+          <div class="accord-header" role="button" tabindex="0">
+            <div class="accord-header-left">
+              <span class="accord-emoji">🌸</span>
+              <span class="accord-name">March 2026</span>
+              <span class="accord-season-pill">Spring</span>
+            </div>
+            <span class="accord-toggle">+</span>
           </div>
-          <div class="pc-title">Spring Program</div>
-          <div class="pc-cities">
-            <span class="pc-city">🇨🇿 Prague</span>
-            <span class="pc-city">🇩🇪 Frankfurt</span>
-            <span class="pc-city">🇳🇱 Amsterdam</span>
-            <span class="pc-city">🇫🇷 Paris</span>
+          <div class="accord-body">
+            <div class="accord-body-inner">
+              <div class="accord-photo">
+                <img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=600&q=75" alt="Prague" loading="lazy" />
+              </div>
+              <div class="accord-details">
+                <div>
+                  <div class="accord-cities-label">Destinations</div>
+                  <div class="accord-cities">
+                    <span class="accord-city">🇨🇿 Prague</span>
+                    <span class="accord-city">🇩🇪 Frankfurt</span>
+                    <span class="accord-city">🇳🇱 Amsterdam</span>
+                    <span class="accord-city">🇫🇷 Paris</span>
+                  </div>
+                </div>
+                <div class="accord-organizer">
+                  <span class="accord-done-dot"></span>
+                  <span>Organized by <strong>Budapest University of Technology and Economics (BME)</strong></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1339,6 +1499,19 @@
         else { el.textContent = '0'; }
         statObsSpecial.observe(el);
       }
+    });
+
+    // Accordion toggle — only one item open at a time
+    document.querySelectorAll('.accord-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.closest('.accord-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.accord-item.open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+      header.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); header.click(); }
+      });
     });
 
     // Parallax on city float images
