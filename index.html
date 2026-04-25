@@ -486,10 +486,39 @@
     .accord-download-btn { display: inline-flex; align-items: center; gap: .35rem; background: rgba(122,30,58,.07); border: 1px solid rgba(122,30,58,.28); color: var(--burgundy); font-family: var(--font-body); font-size: .71rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem .88rem; border-radius: 3px; text-decoration: none; transition: background .2s, color .2s; cursor: none; width: fit-content; }
     .accord-download-btn:hover { background: var(--burgundy); color: white; }
 
-    /* Advisory title above team name */
-    .advisory-title { display: flex; align-items: center; gap: .32rem; margin-bottom: .3rem; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: .78rem; font-weight: 600; letter-spacing: .04em; color: var(--ink); line-height: 1.2; }
-    .advisory-title .advisory-star { color: var(--terracotta); font-style: normal; font-size: .82rem; line-height: 1; flex-shrink: 0; }
-    .advisory-title .advisory-label { color: var(--muted); font-size: .78rem; }
+    /* Advisory badge — floats beside the circular photo */
+    .academic-card .team-card-body { position: relative; }
+    .academic-photo-wrap { position: relative; display: inline-block; margin-bottom: 1rem; }
+    .advisory-badge {
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 8px);
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: .28rem;
+      background: var(--parchment);
+      border: 1px solid rgba(192,82,40,.28);
+      border-radius: 20px;
+      padding: .22rem .62rem .22rem .5rem;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(28,18,8,.08);
+    }
+    .advisory-badge .advisory-star {
+      color: var(--terracotta);
+      font-size: .82rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .advisory-badge .advisory-label {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      color: var(--terracotta);
+      line-height: 1;
+    }
 
     /* Utilities */
     .container { max-width: 1200px; margin: 0 auto; }
@@ -1290,36 +1319,44 @@
       <div class="academics-grid">
         <div class="team-card academic-card reveal reveal-delay-1">
           <div class="team-card-body">
-            <div class="team-avatar-photo"><img src="images/aida.jpeg" alt="Aida Guliyeva" /></div>
+            <div class="academic-photo-wrap">
+              <div class="team-avatar-photo"><img src="images/aida.jpeg" alt="Aida Guliyeva" /></div>
+              <div class="advisory-badge"><span class="advisory-star">★</span><span class="advisory-label">Advisory Board Chair</span></div>
+            </div>
             <div class="team-role">Dean</div>
-            <div class="advisory-title"><span class="advisory-star">★</span><span class="advisory-label">Advisory Board Chair</span></div>
             <div class="team-name">Aida Guliyeva</div>
             <div class="team-bio">Dean of the Sabah Center, bringing institutional authority and academic excellence to CEEP's curriculum.</div>
           </div>
         </div>
         <div class="team-card academic-card reveal reveal-delay-2">
           <div class="team-card-body">
-            <div class="team-avatar-photo" style="width:60px; height:60px; margin-bottom:1rem;"><img src="images/aysel.jpeg" alt="Aysel Guliyeva" /></div>
-            <div class="team-role">Deputy Dean</div>
-            <div class="advisory-title"><span class="advisory-star">★</span><span class="advisory-label">Advisory Board Member</span></div>
+            <div class="academic-photo-wrap">
+              <div class="team-avatar-photo" style="width:60px; height:60px; margin-bottom:0;"><img src="images/aysel.jpeg" alt="Aysel Guliyeva" /></div>
+              <div class="advisory-badge"><span class="advisory-label">Advisory Board Member</span></div>
+            </div>
+            <div class="team-role" style="margin-top:1rem;">Deputy Dean</div>
             <div class="team-name">Aysel Guliyeva</div>
             <div class="team-bio">Deputy Dean at International School of Economics (ISE) at UNEC. Bridges high-level academia with practical program design.</div>
           </div>
         </div>
         <div class="team-card academic-card reveal reveal-delay-3">
           <div class="team-card-body">
-            <div class="team-avatar-photo"><img src="images/aygun.jpeg" alt="Aygun Abdulova" /></div>
+            <div class="academic-photo-wrap">
+              <div class="team-avatar-photo"><img src="images/aygun.jpeg" alt="Aygun Abdulova" /></div>
+              <div class="advisory-badge"><span class="advisory-label">Academic Advisor</span></div>
+            </div>
             <div class="team-role">Lecturer at UNEC</div>
-            <div class="advisory-title"><span class="advisory-star">★</span><span class="advisory-label">Academic Advisor</span></div>
             <div class="team-name">Aygun Abdulova</div>
             <div class="team-bio">Brings rigorous academic content and engaging delivery to CEEP's seminar sessions across European programs.</div>
           </div>
         </div>
         <div class="team-card academic-card reveal reveal-delay-4">
           <div class="team-card-body">
-            <div class="team-avatar-photo" style="width:60px; height:60px; margin-bottom:1rem;"><img src="images/hikmat.jpeg" alt="Hikmat Abdulov" /></div>
-            <div class="team-role">Lecturer at UNEC</div>
-            <div class="advisory-title"><span class="advisory-star">★</span><span class="advisory-label">Academic Advisor</span></div>
+            <div class="academic-photo-wrap">
+              <div class="team-avatar-photo" style="width:60px; height:60px; margin-bottom:0;"><img src="images/hikmat.jpeg" alt="Hikmat Abdulov" /></div>
+              <div class="advisory-badge"><span class="advisory-label">Academic Advisor</span></div>
+            </div>
+            <div class="team-role" style="margin-top:1rem;">Lecturer at UNEC</div>
             <div class="team-name">Hikmat Abdulov</div>
             <div class="team-bio">Contributes deep subject expertise and practical insight to every CEEP educational module and workshop.</div>
           </div>
