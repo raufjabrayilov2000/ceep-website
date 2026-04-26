@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=4">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='white'/%3E%3Ctext x='2' y='23' font-family='Arial%2C sans-serif' font-weight='400' font-size='14'%3E%3Ctspan fill='%23111111'%3ECE%3C/tspan%3E%3Ctspan fill='%23C05228'%3EEP%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=5">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=5">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='white'/%3E%3Ctext x='6' y='21' font-family='Georgia%2C serif' font-weight='400' font-size='10'%3E%3Ctspan fill='%23111111'%3ECE%3C/tspan%3E%3Ctspan fill='%23C05228'%3EEP%3C/tspan%3E%3C/text%3E%3C/svg%3E">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -531,6 +531,236 @@
       letter-spacing: .02em;
       color: var(--terracotta);
       line-height: 1;
+    }
+
+    /* Certificate Download Card */
+    .certificate-card {
+      background: linear-gradient(145deg, #1C1208 0%, #2A1A0F 50%, #1C1208 100%);
+      border: 2px solid var(--bronze);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+    }
+    .certificate-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--bronze), var(--eu-gold), var(--bronze));
+      z-index: 2;
+    }
+    .certificate-card::after {
+      content: '✦';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 1rem;
+      color: var(--eu-gold);
+      opacity: 0.6;
+      z-index: 3;
+    }
+    .certificate-card-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .certificate-icon {
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
+      filter: drop-shadow(0 4px 12px rgba(181, 118, 46, 0.4));
+      animation: trophyFloat 3s ease-in-out infinite;
+    }
+    @keyframes trophyFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .certificate-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--eu-gold);
+      margin-bottom: 0.3rem;
+      text-shadow: 0 2px 8px rgba(181, 118, 46, 0.3);
+    }
+    .certificate-subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: rgba(245, 236, 215, 0.7);
+      margin-bottom: 1.2rem;
+    }
+    .certificate-action {
+      margin-top: 0.5rem;
+    }
+    .certificate-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, var(--bronze) 0%, var(--terracotta) 100%);
+      color: white;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 204, 0, 0.3);
+      box-shadow: 0 4px 16px rgba(192, 82, 40, 0.3);
+      transition: all 0.3s ease;
+    }
+    .certificate-card:hover .certificate-btn {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(192, 82, 40, 0.5);
+      background: linear-gradient(135deg, var(--terracotta) 0%, var(--bronze) 100%);
+    }
+    .certificate-shine {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(255, 204, 0, 0.08) 45%,
+        rgba(255, 204, 0, 0.15) 50%,
+        rgba(255, 204, 0, 0.08) 55%,
+        transparent 60%
+      );
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+      pointer-events: none;
+    }
+    .certificate-card:hover .certificate-shine {
+      transform: translateX(100%);
+    }
+    .certificate-card:hover {
+      border-color: var(--eu-gold);
+      box-shadow: 0 12px 40px rgba(28, 18, 8, 0.3), inset 0 0 60px rgba(181, 118, 46, 0.1);
+    }
+
+    /* Certificate Modal */
+    .cert-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 18, 8, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .cert-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .cert-modal {
+      background: var(--parchment);
+      border: 2px solid var(--bronze);
+      border-radius: 12px;
+      padding: 2.5rem;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.3s ease;
+      box-shadow: 0 24px 80px rgba(28, 18, 8, 0.4);
+    }
+    .cert-modal-overlay.active .cert-modal {
+      transform: scale(1) translateY(0);
+    }
+    .cert-modal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--bronze), var(--eu-gold), var(--bronze));
+      border-radius: 10px 10px 0 0;
+    }
+    .cert-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .cert-modal-close:hover {
+      color: var(--terracotta);
+    }
+    .cert-modal-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+    .cert-modal-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .cert-modal-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .cert-modal-input {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 2px solid var(--stone);
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      text-align: center;
+      letter-spacing: 0.1em;
+      background: var(--parchment2);
+      color: var(--ink);
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .cert-modal-input:focus {
+      outline: none;
+      border-color: var(--bronze);
+    }
+    .cert-modal-input::placeholder {
+      color: var(--stone2);
+    }
+    .cert-modal-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--terracotta);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cert-modal-btn:hover {
+      background: var(--terracotta-d);
+      transform: translateY(-1px);
     }
 
     /* Utilities */
@@ -1298,6 +1528,18 @@
             <div class="memory-caption-city">🇨🇿 Prague</div>
           </div>
         </div>
+        <!-- 9: Certificate Download Card -->
+        <div class="memory-item certificate-card" onclick="showCertificateModal()">
+          <div class="certificate-card-inner">
+            <div class="certificate-icon">🏆</div>
+            <div class="certificate-title">Your Certificate</div>
+            <div class="certificate-subtitle">Download & Verify</div>
+            <div class="certificate-action">
+              <span class="certificate-btn">Enter Code</span>
+            </div>
+          </div>
+          <div class="certificate-shine"></div>
+        </div>
       </div>
       <p class="memories-add-note reveal">More memories added after each program.</p>
     </div>
@@ -1493,6 +1735,18 @@
     </div>
   </footer>
 
+  <!-- Certificate Modal -->
+  <div class="cert-modal-overlay" id="certModal" onclick="closeCertificateModal(event)">
+    <div class="cert-modal" onclick="event.stopPropagation()">
+      <button class="cert-modal-close" onclick="closeCertificateModal()">×</button>
+      <div class="cert-modal-icon">🏆</div>
+      <div class="cert-modal-title">Certificate Download</div>
+      <div class="cert-modal-text">Enter your certificate code to download and verify your achievement.</div>
+      <input type="text" class="cert-modal-input" id="certCodeInput" placeholder="XXXX-XXXX-XXXX" maxlength="14" />
+      <button class="cert-modal-btn" onclick="handleCertificateSubmit()">Download Certificate</button>
+    </div>
+  </div>
+
   <script>
     // Announcement Banner offset
     const announcementBanner = document.getElementById('announcementBanner');
@@ -1619,6 +1873,57 @@
         card.style.transition = 'transform 0.5s ease';
         setTimeout(() => card.style.transition = '', 500);
       });
+    });
+
+    // Certificate Modal Functions
+    function showCertificateModal() {
+      document.getElementById('certModal').classList.add('active');
+      document.getElementById('certCodeInput').focus();
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCertificateModal(event) {
+      // Close if: no event (ESC key), clicked overlay, or clicked close button/X
+      if (!event) {
+        document.getElementById('certModal').classList.remove('active');
+        document.body.style.overflow = '';
+        document.getElementById('certCodeInput').value = '';
+        return;
+      }
+      if (event.target === document.getElementById('certModal')) {
+        document.getElementById('certModal').classList.remove('active');
+        document.body.style.overflow = '';
+        document.getElementById('certCodeInput').value = '';
+        return;
+      }
+      if (event.target.closest('.cert-modal-close')) {
+        document.getElementById('certModal').classList.remove('active');
+        document.body.style.overflow = '';
+        document.getElementById('certCodeInput').value = '';
+        return;
+      }
+    }
+    function handleCertificateSubmit() {
+      const code = document.getElementById('certCodeInput').value.trim();
+      if (!code) {
+        alert('Please enter your certificate code.');
+        return;
+      }
+      alert('Certificate code submitted: ' + code + '\n\n(This is a test - real certificate download coming soon!)');
+      closeCertificateModal();
+    }
+    // Certificate code input formatting
+    document.getElementById('certCodeInput')?.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+      if (value.length > 12) value = value.slice(0, 12);
+      const parts = [];
+      for (let i = 0; i < value.length; i += 4) {
+        parts.push(value.slice(i, i + 4));
+      }
+      e.target.value = parts.join('-');
+    });
+    // Close modal on Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeCertificateModal();
     });
   </script>
 </body>
