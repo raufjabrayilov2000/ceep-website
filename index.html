@@ -9,6 +9,11 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#F5ECD7">
   <title>CEEP — Center for European Education Programs</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,6 +68,12 @@
     .cursor { width: 14px; height: 14px; background: var(--terracotta); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform .12s ease, width .25s ease, height .25s ease; mix-blend-mode: multiply; }
     .cursor-ring { width: 40px; height: 40px; border: 1.5px solid var(--terracotta); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform .35s cubic-bezier(.23,1,.32,1), width .4s ease, height .4s ease, opacity .3s ease; opacity: .45; }
     body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height: 20px; }
+    @media (pointer: coarse), (hover: none), (max-width: 768px) {
+      * { cursor: auto !important; }
+      a, button, [role=button] { cursor: pointer !important; }
+      .cursor, .cursor-ring, .custom-cursor { display: none !important; }
+      body { cursor: auto !important; }
+    }
 
     /* Scrollbar */
     ::-webkit-scrollbar { width: 4px; }
@@ -1770,28 +1781,30 @@
       if (announcementBanner) { announcementBanner.style.display = 'none'; updateBannerOffset(); }
     });
 
-    // Custom Cursor
-    const cursor = document.getElementById('cursor');
-    const ring   = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-    });
-    function animRing() {
-      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-      requestAnimationFrame(animRing);
+    // Custom Cursor (desktop/mouse only)
+    if (window.matchMedia('(pointer: fine)').matches && !('ontouchstart' in window)) {
+      const cursor = document.getElementById('cursor');
+      const ring   = document.getElementById('cursorRing');
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+      });
+      function animRing() {
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(animRing);
+      }
+      animRing();
+      document.addEventListener('mousedown', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(0.7)';
+        ring.style.transform   = 'translate(-50%,-50%) scale(0.8)';
+      });
+      document.addEventListener('mouseup', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.transform   = 'translate(-50%,-50%) scale(1)';
+      });
     }
-    animRing();
-    document.addEventListener('mousedown', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(0.7)';
-      ring.style.transform   = 'translate(-50%,-50%) scale(0.8)';
-    });
-    document.addEventListener('mouseup', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-      ring.style.transform   = 'translate(-50%,-50%) scale(1)';
-    });
 
     // Navbar scroll
     window.addEventListener('scroll', () => {
