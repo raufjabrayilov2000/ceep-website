@@ -342,40 +342,99 @@
     @media(max-width:900px){ .memories-grid { grid-template-columns: repeat(2,1fr); } .memory-item.mem-tall { grid-row: span 1; } .memory-item.mem-wide { grid-column: span 1; } }
     @media(max-width:500px){ .memories-grid { grid-template-columns: 1fr; } }
 
-    /* Team */
-    #team { background: var(--parchment2); padding-top: 7rem; }
+    /* Team / Governance */
+    #team { background: var(--parchment2); padding-top: 7rem; padding-bottom: 7rem; }
     .team-inner { max-width: 1100px; margin: 0 auto; }
     .team-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 1rem; }
     @media(max-width:700px){ .team-header { grid-template-columns: 1fr; gap: 2rem; } }
     .team-desc { font-size: 1rem; line-height: 1.75; color: var(--muted); }
+
+    /* Section pillar headers */
+    .gov-pillar { margin-top: 3.5rem; }
+    .gov-pillar-label { font-family: var(--font-display); font-size: 1.9rem; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .3rem; }
+    .gov-pillar-label.exec { color: var(--terracotta); }
+    .gov-pillar-label.acad { color: var(--burgundy); }
+    .gov-pillar-eyebrow { font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 2rem; }
+
+    /* Pillar divider */
+    .gov-pillar-divider { display: flex; align-items: center; gap: 1.2rem; margin: 4rem 0 0; }
+    .gov-pillar-divider::before, .gov-pillar-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(181,118,46,.5), transparent); }
+    .gov-pillar-divider-text { font-size: .6rem; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--bronze); white-space: nowrap; }
+
+    /* Subsection label within a pillar */
     .team-group-label { font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin: 2.8rem 0 1.2rem; display: flex; align-items: center; gap: 1rem; }
     .team-group-label::after { content: ''; flex: 1; height: 1px; background: var(--stone); }
-    .founders-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
-    @media(max-width:600px){ .founders-grid { grid-template-columns: 1fr; } }
-    .academics-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
+    .team-group-label.subsection-serif { font-family: var(--font-serif); font-style: italic; font-size: .82rem; font-weight: 600; text-transform: none; letter-spacing: .04em; color: var(--bronze); }
+    .team-group-label.subsection-serif::before { content: ''; flex: 1; height: 1px; background: rgba(181,118,46,.35); }
+    .team-group-label.subsection-serif::after { background: rgba(181,118,46,.35); }
+
+    /* Hierarchy connector */
+    .hier-connector { display: flex; justify-content: center; margin: .4rem 0; }
+    .hier-connector::before { content: ''; display: block; width: 1px; height: 32px; background: rgba(201,169,97,.45); }
+    @media(max-width:768px){ .hier-connector { display: none; } }
+
+    /* Grids */
+    .solo-grid { display: flex; justify-content: center; }
+    .solo-grid .team-card { width: 100%; max-width: 420px; }
+    .duo-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; max-width: 720px; margin: 0 auto; }
+    @media(max-width:600px){ .duo-grid { grid-template-columns: 1fr; } }
+    .tri-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
+    @media(max-width:900px){ .tri-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:500px){ .tri-grid { grid-template-columns: 1fr; } }
+    .academics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
     @media(max-width:900px){ .academics-grid { grid-template-columns: repeat(2,1fr); } }
     @media(max-width:500px){ .academics-grid { grid-template-columns: 1fr; } }
+
+    /* Cards */
     .team-card { position: relative; background: var(--parchment); border: 1px solid var(--stone); border-radius: 10px; overflow: hidden; transition: border-color .3s, transform .3s, box-shadow .3s; }
     .team-card:hover { border-color: rgba(192,82,40,.35); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(28,18,8,.1); }
     .team-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--terracotta), var(--burgundy)); z-index: 1; }
+    .team-card.director-card { box-shadow: 0 4px 24px rgba(181,118,46,.18), 0 1px 0 rgba(201,169,97,.6) inset; border-color: rgba(201,169,97,.55); }
+    .team-card.director-card::before { background: linear-gradient(90deg, #B5762E, #C9A961, #B5762E); }
+    .team-card.director-card:hover { border-color: rgba(201,169,97,.85); box-shadow: 0 12px 40px rgba(181,118,46,.25); }
+    .team-card.function-card { background: rgba(28,18,8,.04); border: 1px solid rgba(28,18,8,.12); cursor: default; }
+    .team-card.function-card:hover { transform: none; box-shadow: none; border-color: rgba(28,18,8,.18); }
+    .team-card.function-card::before { background: rgba(28,18,8,.08); }
     .team-card-body { padding: 2.5rem; }
-    .team-card.coordinator-card .team-card-body { display: flex; align-items: flex-start; gap: 2rem; }
     .team-card.academic-card .team-card-body { padding: 1.8rem; }
+
+    /* Avatars */
     .team-avatar-photo { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; margin-bottom: 1.5rem; flex-shrink: 0; border: 3px solid var(--stone); box-shadow: 0 4px 16px rgba(28,18,8,.15); transition: border-color .3s; }
     .team-card:hover .team-avatar-photo { border-color: var(--terracotta); }
+    .director-card .team-avatar-photo { border-color: rgba(201,169,97,.6); }
+    .director-card:hover .team-avatar-photo { border-color: #C9A961; }
     .team-avatar-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .coordinator-card .team-avatar-photo { margin-bottom: 0; width: 72px; height: 72px; }
     .academic-card .team-avatar-photo { width: 60px; height: 60px; margin-bottom: 1rem; }
-    .team-avatar { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.8rem; color: white; margin-bottom: 1.5rem; flex-shrink: 0; }
-    .coordinator-card .team-avatar { margin-bottom: 0; }
-    .academic-card .team-avatar { width: 56px; height: 56px; font-size: 1.3rem; margin-bottom: 1rem; }
+    /* Monogram placeholder */
+    .avatar-placeholder { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #E9E1CC, #D4C5A0); border: 3px solid var(--stone); box-shadow: 0 4px 16px rgba(28,18,8,.12); margin-bottom: 1.5rem; flex-shrink: 0; transition: border-color .3s; font-family: var(--font-display); font-size: 2.4rem; letter-spacing: .05em; color: var(--burgundy); line-height: 1; }
+    .team-card:hover .avatar-placeholder { border-color: var(--terracotta); }
+    .academic-card .avatar-placeholder { width: 60px; height: 60px; font-size: 1.55rem; margin-bottom: 1rem; }
+    .photo-placeholder { display: none; }
+
+    /* Text */
     .team-role { font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--terracotta); margin-bottom: .4rem; }
+    .team-role.role-acad { color: var(--burgundy); }
     .team-name { font-family: var(--font-head); font-size: 1.35rem; font-weight: 800; line-height: 1.2; margin-bottom: .8rem; color: var(--ink); }
     .academic-card .team-name { font-size: 1.05rem; margin-bottom: .5rem; }
+    .team-subtitle { font-family: var(--font-serif); font-style: italic; font-size: .82rem; color: var(--muted); margin-bottom: .7rem; letter-spacing: .01em; }
     .team-bio { font-size: .88rem; color: var(--muted); line-height: 1.65; }
     .academic-card .team-bio { font-size: .82rem; }
-    .team-quote { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--stone); font-family: var(--font-serif); font-style: italic; font-size: .9rem; color: rgba(28,18,8,.42); }
-    .team-location { display: inline-flex; align-items: center; gap: .4rem; margin-top: .8rem; font-size: .75rem; letter-spacing: .05em; color: var(--eu-blue); background: rgba(0,51,153,.06); border: 1px solid rgba(0,51,153,.15); border-radius: 100px; padding: .25rem .7rem; }
+
+    /* Function card specifics */
+    .func-icon { font-size: 1.4rem; color: var(--terracotta); margin-bottom: 1rem; opacity: .7; }
+    .func-name { font-family: var(--font-display); font-size: 1.55rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); margin-bottom: .5rem; }
+    .func-status { font-size: .65rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+
+    /* Advisory badge */
+    .academic-photo-wrap { position: relative; display: flex; align-items: center; width: fit-content; height: 60px; margin-bottom: 1rem; }
+    .academic-photo-wrap .team-avatar-photo { width: 60px !important; height: 60px !important; margin-bottom: 0 !important; flex-shrink: 0; }
+    .academic-photo-wrap .avatar-placeholder { width: 60px !important; height: 60px !important; font-size: 1.45rem !important; margin-bottom: 0 !important; }
+    .advisory-badge { position: absolute; top: 50%; left: calc(100% + 8px); transform: translateY(-50%); display: inline-flex; align-items: center; gap: .28rem; background: var(--parchment); border: 1px solid rgba(192,82,40,.28); border-radius: 20px; padding: .22rem .62rem .22rem .5rem; white-space: nowrap; box-shadow: 0 2px 8px rgba(28,18,8,.08); }
+    .advisory-badge .advisory-star { color: var(--terracotta); font-size: .82rem; line-height: 1; flex-shrink: 0; }
+    .advisory-badge .advisory-label { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: .72rem; font-weight: 600; letter-spacing: .02em; color: var(--terracotta); line-height: 1; }
+    .advisory-badge.badge-acad { border-color: rgba(122,30,58,.28); }
+    .advisory-badge.badge-acad .advisory-star, .advisory-badge.badge-acad .advisory-label { color: var(--burgundy); }
+
     .partner-row { margin-top: 3rem; padding: 1.8rem 2.5rem; background: var(--parchment); border: 1px solid var(--stone); border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
     .partner-label { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
     .partner-name { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--ink); }
@@ -496,53 +555,6 @@
     .accord-prof-sep { color: var(--stone2); font-size: .65rem; line-height: 1; }
     .accord-download-btn { display: inline-flex; align-items: center; gap: .35rem; background: rgba(122,30,58,.07); border: 1px solid rgba(122,30,58,.28); color: var(--burgundy); font-family: var(--font-body); font-size: .71rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem .88rem; border-radius: 3px; text-decoration: none; transition: background .2s, color .2s; width: fit-content; }
     .accord-download-btn:hover { background: var(--burgundy); color: white; }
-
-    /* Advisory badge — floats beside the circular photo */
-    .academic-card .team-card-body { position: relative; }
-    .academic-photo-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      width: fit-content;
-      height: 60px;
-      margin-bottom: 1rem;
-    }
-    .academic-photo-wrap .team-avatar-photo {
-      width: 60px !important;
-      height: 60px !important;
-      margin-bottom: 0 !important;
-      flex-shrink: 0;
-    }
-    .advisory-badge {
-      position: absolute;
-      top: 50%;
-      left: calc(100% + 8px);
-      transform: translateY(-50%);
-      display: inline-flex;
-      align-items: center;
-      gap: .28rem;
-      background: var(--parchment);
-      border: 1px solid rgba(192,82,40,.28);
-      border-radius: 20px;
-      padding: .22rem .62rem .22rem .5rem;
-      white-space: nowrap;
-      box-shadow: 0 2px 8px rgba(28,18,8,.08);
-    }
-    .advisory-badge .advisory-star {
-      color: var(--terracotta);
-      font-size: .82rem;
-      line-height: 1;
-      flex-shrink: 0;
-    }
-    .advisory-badge .advisory-label {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-style: italic;
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .02em;
-      color: var(--terracotta);
-      line-height: 1;
-    }
 
     /* Certificate Download Card */
     .certificate-card {
@@ -805,7 +817,8 @@
       .cf1,.cf2,.cf3,.cf4 { display: none; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
       .footer-partner { text-align: left; }
-      .team-card.coordinator-card .team-card-body { flex-direction: column; }
+      .solo-grid .team-card { max-width: 100%; }
+      .gov-pillar-label { font-size: 1.4rem; }
     }
     /* Extra tightening on small phones */
     @media(max-width:480px){
@@ -854,10 +867,10 @@
         </div>
         <div class="banner-vdivider"></div>
         <div class="banner-prof">
-          <div class="banner-prof-avatar" style="padding:0; overflow:hidden;"><img src="images/wadim.jpeg" alt="Prof. Wadim Strielkowski" /></div>
+          <div class="banner-prof-avatar">AB</div>
           <div class="banner-prof-text">
-            <span class="banner-prof-name">Prof. Wadim Strielkowski</span>
-            <span class="banner-prof-creds">Prague Business School · Former Visiting Prof at UC Berkeley · 220+ Web of Science Publications</span>
+            <span class="banner-prof-name">Led by our Academic Board</span>
+            <span class="banner-prof-creds">Prague Business School · Budapest University of Technology · UNEC Faculty</span>
           </div>
         </div>
       </div>
@@ -1464,8 +1477,8 @@
       <div class="stat-block reveal"><div class="stat-big">400<span class="plus">+</span></div><div class="stat-info">Participants</div></div>
       <div class="stat-block reveal reveal-delay-1"><div class="stat-big">10</div><div class="stat-info">Completed Programs</div></div>
       <div class="stat-block reveal reveal-delay-2"><div class="stat-big">7</div><div class="stat-info">Years Experience</div></div>
-      <div class="stat-block reveal reveal-delay-3"><div class="stat-big">3</div><div class="stat-info">Core Team Members</div></div>
-      <div class="stat-block reveal reveal-delay-4"><div class="stat-big">4</div><div class="stat-info">Academic Staff</div></div>
+      <div class="stat-block reveal reveal-delay-3"><div class="stat-big">9</div><div class="stat-info">Executive Team</div></div>
+      <div class="stat-block reveal reveal-delay-4"><div class="stat-big">5</div><div class="stat-info">Academic Board Members</div></div>
       <div class="stat-block reveal reveal-delay-5"><div class="stat-big">14<span class="plus">+</span></div><div class="stat-info">European Cities</div></div>
     </div>
   </section>
@@ -1564,99 +1577,223 @@
     </div>
   </section>
 
-  <!-- TEAM -->
+  <!-- GOVERNANCE & TEAM -->
   <section id="team">
     <div class="team-inner">
       <div class="team-header">
         <div>
-          <p class="section-tag reveal">The People Behind It</p>
-          <h2 class="section-title reveal reveal-delay-1">Meet the<br/>Team</h2>
+          <p class="section-tag reveal">Governance &amp; Team</p>
+          <h2 class="section-title reveal reveal-delay-1">The People<br/>Behind CEEP</h2>
         </div>
-        <p class="team-desc reveal reveal-delay-2">CEEP is built by people who believe education should be an adventure. Our team combines academic rigor with the energy to make every experience unforgettable.</p>
+        <p class="team-desc reveal reveal-delay-2">CEEP operates under a clear governance framework — executive leadership driving day-to-day excellence, overseen by an independent Academic Board of European scholars and practitioners.</p>
       </div>
 
-      <!-- Co-Founders -->
-      <div class="team-group-label reveal">Co-Founders</div>
-      <div class="founders-grid">
-        <div class="team-card reveal reveal-delay-1">
-          <div class="team-card-body">
-            <div class="team-avatar-photo"><img src="images/rauf.jpeg" alt="Rauf Jabrayilov" /></div>
-            <div class="team-role">Co-Founder</div>
-            <div class="team-name">Rauf Jabrayilov PhD.c.</div>
-            <div class="team-bio">PhD candidate and academic architect of the CEEP program. Rauf brings scholarly depth and strategic vision to every seminar, partnership, and program milestone.</div>
-            <div class="team-quote">"The best education happens when you step outside your comfort zone — ideally in a different country."</div>
-          </div>
-        </div>
-        <div class="team-card reveal reveal-delay-2">
-          <div class="team-card-body">
-            <div class="team-avatar-photo"><img src="images/nazrin.jpeg" alt="Nazrin Rzayeva" /></div>
-            <div class="team-role">Co-Founder</div>
-            <div class="team-name">Nazrin Rzayeva</div>
-            <div class="team-bio">Visionary co-founder and program architect of CEEP. Nazrin brings creative leadership and strategic clarity to every initiative, shaping the program's identity from the ground up.</div>
-            <div class="team-quote">"Building CEEP means building a new kind of educational experience — one that stays with you forever."</div>
-          </div>
-        </div>
-      </div>
+      <!-- ═══════════════════════════════════════════ -->
+      <!--  BLOCK A — EXECUTIVE MANAGEMENT            -->
+      <!-- ═══════════════════════════════════════════ -->
+      <div class="gov-pillar reveal">
+        <div class="gov-pillar-label exec">Executive Management</div>
+        <div class="gov-pillar-eyebrow">Operational Leadership</div>
 
-      <!-- General Coordinator -->
-      <div class="team-group-label reveal">General Coordinator</div>
-      <div class="team-card coordinator-card reveal">
-        <div class="team-card-body">
-          <div class="team-avatar-photo" style="margin-bottom:0; width:72px; height:72px;"><img src="images/suleyman.jpeg" alt="Suleyman Suleymanli" /></div>
-          <div>
-            <div class="team-role">General Coordinator</div>
-            <div class="team-name">Suleyman Suleymanli</div>
-            <div class="team-bio">The central coordination force behind CEEP's cross-border operations. Suleyman manages the logistical framework that keeps programs running smoothly across multiple European countries — bridging teams, institutions, and students with precision and care.</div>
-            <div class="team-location">📍 Based in Italy</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Academic Staff -->
-      <div class="team-group-label reveal">Academic Staff</div>
-      <div class="academics-grid">
-        <div class="team-card academic-card reveal reveal-delay-1">
-          <div class="team-card-body">
-            <div class="academic-photo-wrap">
-              <div class="team-avatar-photo"><img src="images/aida.jpeg" alt="Aida Guliyeva" /></div>
-              <div class="advisory-badge"><span class="advisory-star">★</span><span class="advisory-label">Advisory Board Chair</span></div>
+        <!-- Row 1 — Director (solo, dominant) -->
+        <div class="solo-grid">
+          <div class="team-card director-card reveal">
+            <div class="team-card-body">
+              <div class="team-avatar-photo"><img src="images/rauf.jpeg" alt="Rauf Cəbrayılov" /></div>
+              <div class="team-role">Director</div>
+              <div class="team-name">Rauf Cəbrayılov</div>
+              <div class="team-subtitle">100% Shareholder · Founder · Executive Director</div>
+              <div class="team-bio">Founder and executive director of CEEP. Rauf shapes the strategic vision, institutional partnerships, and academic architecture that define every program milestone.</div>
             </div>
-            <div class="team-role">Dean</div>
-            <div class="team-name">Aida Guliyeva</div>
-            <div class="team-bio">Dean of the Sabah Center, bringing institutional authority and academic excellence to CEEP's curriculum.</div>
           </div>
         </div>
-        <div class="team-card academic-card reveal reveal-delay-2">
-          <div class="team-card-body">
-            <div class="academic-photo-wrap">
+
+        <!-- Hierarchy connector -->
+        <div class="hier-connector"></div>
+
+        <!-- Row 2 — Head of Management (solo, mid-tier) -->
+        <div class="solo-grid">
+          <div class="team-card reveal">
+            <div class="team-card-body">
+              <div class="avatar-placeholder photo-placeholder-wrap">SA</div>
+              <span class="photo-placeholder"></span>
+              <div class="team-role">Head of Management</div>
+              <div class="team-name">Səma Aliyeva</div>
+              <div class="team-subtitle">Coordinates management and day-to-day operations</div>
+              <div class="team-bio">Bridges executive direction and operational delivery — ensuring every team, timeline, and process runs with institutional precision.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hierarchy connector -->
+        <div class="hier-connector"></div>
+
+        <!-- Row 3 — Operational Team (3-column) -->
+        <div class="team-group-label reveal">Operational Team</div>
+        <div class="tri-grid">
+          <div class="team-card reveal reveal-delay-1">
+            <div class="team-card-body">
+              <div class="team-avatar-photo"><img src="images/nazrin.jpeg" alt="Nazrin Rzayeva" /></div>
+              <div class="team-role">Students Affairs &amp; Content Manager</div>
+              <div class="team-name">Nazrin Rzayeva</div>
+              <div class="team-bio">Manages student engagement, content strategy, and program communications across all CEEP initiatives.</div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-2">
+            <div class="team-card-body">
+              <div class="avatar-placeholder">ZR</div>
+              <div class="team-role">Students Affairs &amp; ADA Representative</div>
+              <div class="team-name">Zahra Rasulzada</div>
+              <div class="team-bio">Supports student affairs and serves as CEEP's official liaison for ADA University participants.</div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-3">
+            <div class="team-card-body">
+              <div class="team-avatar-photo"><img src="images/suleyman.jpeg" alt="Süleyman Süleymanlı" /></div>
+              <div class="team-role">Program Coordinator</div>
+              <div class="team-name">Süleyman Süleymanlı</div>
+              <div class="team-bio">The central coordination force behind CEEP's cross-border operations — bridging teams, institutions, and students across Europe.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 4 — Creative & Design subsection -->
+        <div class="team-group-label subsection-serif reveal">Creative &amp; Design</div>
+        <div class="tri-grid">
+          <div class="team-card reveal reveal-delay-1">
+            <div class="team-card-body">
+              <div class="avatar-placeholder">MH</div>
+              <div class="team-role">Senior Illustrator</div>
+              <div class="team-name">Madina Hashimova</div>
+              <div class="team-bio">Leads visual storytelling and illustration across all CEEP's brand and program materials.</div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-2">
+            <div class="team-card-body">
+              <div class="avatar-placeholder">LK</div>
+              <div class="team-role">Graphic Designer</div>
+              <div class="team-name">Leyla Khalil</div>
+              <div class="team-bio">Crafts the visual identity and design systems that give CEEP its distinctive, premium aesthetic.</div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-3">
+            <div class="team-card-body">
+              <div class="avatar-placeholder">EO</div>
+              <div class="team-role">Graphic Designer</div>
+              <div class="team-name">Emil Osmanov</div>
+              <div class="team-bio">Develops visual assets, print collateral, and digital design across CEEP's communications.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 5 — Director's Office subsection -->
+        <div class="team-group-label subsection-serif reveal">Director's Office</div>
+        <div class="tri-grid">
+          <div class="team-card function-card reveal reveal-delay-1">
+            <div class="team-card-body">
+              <div class="func-icon">⚜</div>
+              <div class="func-name">Treasury</div>
+              <div class="func-status">Director Access Only</div>
+            </div>
+          </div>
+          <div class="team-card function-card reveal reveal-delay-2">
+            <div class="team-card-body">
+              <div class="func-icon">⚿</div>
+              <div class="func-name">Accounting</div>
+              <div class="func-status">Director Access Only</div>
+            </div>
+          </div>
+          <div class="team-card function-card reveal reveal-delay-3">
+            <div class="team-card-body">
+              <div class="func-icon">⚖</div>
+              <div class="func-name">Legal</div>
+              <div class="func-status">Director Access Only</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!--  DIVIDER                                   -->
+      <!-- ═══════════════════════════════════════════ -->
+      <div class="gov-pillar-divider reveal">
+        <div class="gov-pillar-divider-text">Governance Body</div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!--  BLOCK B — ACADEMIC BOARD                  -->
+      <!-- ═══════════════════════════════════════════ -->
+      <div class="gov-pillar reveal">
+        <div class="gov-pillar-label acad">Academic Board</div>
+        <div class="gov-pillar-eyebrow">Independent Governance &amp; Academic Oversight</div>
+
+        <!-- Row 1 — Director (solo, same visual weight) -->
+        <div class="solo-grid">
+          <div class="team-card director-card reveal">
+            <div class="team-card-body">
+              <div class="team-avatar-photo"><img src="images/rauf.jpeg" alt="Rauf Cəbrayılov" /></div>
+              <div class="team-role role-acad">Director</div>
+              <div class="team-name">Rauf Cəbrayılov</div>
+              <div class="team-subtitle">100% Shareholder · Founder · Academic Director</div>
+              <div class="team-bio">Chairs the intersection of operational leadership and academic governance, ensuring institutional mission alignment across all scholarly activities.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hierarchy connector -->
+        <div class="hier-connector"></div>
+
+        <!-- Row 2 — Chair of the Academic Board (solo, mid-tier) -->
+        <div class="solo-grid">
+          <div class="team-card reveal">
+            <div class="team-card-body">
               <div class="team-avatar-photo"><img src="images/aysel.jpeg" alt="Aysel Guliyeva" /></div>
-              <div class="advisory-badge"><span class="advisory-label">Advisory Board Member</span></div>
+              <div class="team-role role-acad">Chair of the Academic Board</div>
+              <div class="team-name">Aysel Guliyeva</div>
+              <div class="team-subtitle">Deputy Director, ISE Faculty, UNEC</div>
+              <div class="team-bio">Provides authoritative academic leadership and curriculum governance across all CEEP programs, drawing on extensive experience at Azerbaijan's premier economics faculty.</div>
             </div>
-            <div class="team-role">Deputy Dean</div>
-            <div class="team-name">Aysel Guliyeva</div>
-            <div class="team-bio">Deputy Dean at International School of Economics (ISE) at UNEC. Bridges high-level academia with practical program design.</div>
           </div>
         </div>
-        <div class="team-card academic-card reveal reveal-delay-3">
-          <div class="team-card-body">
-            <div class="academic-photo-wrap">
-              <div class="team-avatar-photo"><img src="images/aygun.jpeg" alt="Aygun Abdulova" /></div>
-              <div class="advisory-badge"><span class="advisory-label">Academic Advisor</span></div>
+
+        <!-- Hierarchy connector -->
+        <div class="hier-connector"></div>
+
+        <!-- Row 3 — Board Members (3-column) -->
+        <div class="team-group-label reveal">Board Members</div>
+        <div class="academics-grid">
+          <div class="team-card academic-card reveal reveal-delay-1">
+            <div class="team-card-body">
+              <div class="academic-photo-wrap">
+                <div class="avatar-placeholder">MSC</div>
+                <div class="advisory-badge badge-acad"><span class="advisory-star">★</span><span class="advisory-label">Board Member &amp; Adviser</span></div>
+              </div>
+              <div class="team-role role-acad">Academic Board Member &amp; Adviser</div>
+              <div class="team-name">Mária Szalmáné Csete</div>
+              <div class="team-bio">Dean, Budapest University of Technology and Economics (BME). Brings cross-disciplinary academic governance expertise to CEEP's European network.</div>
             </div>
-            <div class="team-role">Lecturer at UNEC</div>
-            <div class="team-name">Aygun Abdulova</div>
-            <div class="team-bio">Brings rigorous academic content and engaging delivery to CEEP's seminar sessions across European programs.</div>
           </div>
-        </div>
-        <div class="team-card academic-card reveal reveal-delay-4">
-          <div class="team-card-body">
-            <div class="academic-photo-wrap">
-              <div class="team-avatar-photo"><img src="images/hikmat.jpeg" alt="Hikmat Abdulov" /></div>
-              <div class="advisory-badge"><span class="advisory-label">Academic Advisor</span></div>
+          <div class="team-card academic-card reveal reveal-delay-2">
+            <div class="team-card-body">
+              <div class="academic-photo-wrap">
+                <div class="team-avatar-photo"><img src="images/wadim.jpeg" alt="Vadim Strielkowski" /></div>
+                <div class="advisory-badge badge-acad"><span class="advisory-label">Board Member &amp; Adviser</span></div>
+              </div>
+              <div class="team-role role-acad">Academic Board Member &amp; Adviser</div>
+              <div class="team-name">Vadim Strielkowski</div>
+              <div class="team-bio">Director, Prague Business School. Former Visiting Professor at UC Berkeley. 220+ Web of Science publications. Brings international research leadership to CEEP's academic oversight.</div>
             </div>
-            <div class="team-role">Lecturer at UNEC</div>
-            <div class="team-name">Hikmat Abdulov</div>
-            <div class="team-bio">Contributes deep subject expertise and practical insight to every CEEP educational module and workshop.</div>
+          </div>
+          <div class="team-card academic-card reveal reveal-delay-3">
+            <div class="team-card-body">
+              <div class="academic-photo-wrap">
+                <div class="avatar-placeholder">AB</div>
+                <div class="advisory-badge badge-acad"><span class="advisory-label">Finance Adviser</span></div>
+              </div>
+              <div class="team-role role-acad">Academic Board Member &amp; Finance Adviser</div>
+              <div class="team-name">András Bethlendi</div>
+              <div class="team-bio">Vice-Dean, Budapest University of Technology and Economics (BME). Provides financial governance and academic advisory oversight for CEEP's institutional operations.</div>
+            </div>
           </div>
         </div>
       </div>
